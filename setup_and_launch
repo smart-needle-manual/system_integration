@@ -1,3 +1,14 @@
+###### NOTE FOR BELOW: OpenIGT and ros2 humble already set up in obgynbrachy ########
+###### NOTE: Tokuda lab members using AMIGO Gadgetron, follow Ubuntu directions ALWAYS ######
+##### Build OpenIGT (needed for now) from https://openigtlink.org/library/build #####
+##### For ROS 2 Humble installation and instructions, see: https://docs.ros.org/en/humble/Installation.html and https://docs.ros.org/en/humble/Tutorials.html #####
+
+################### Launch Directions ###########################################################
+
+# Author: Rajdeep Banerjee, MEng, Research Trainee in Brigham and Women's Hospital Radiology Department, Tokuda Lab, 75 Francis St, Boston, MA, 02115
+
+# Supervisors: Dr. Mariana Bernardes (Direct) and Dr. Junichi Tokuda (PI)
+
 ########### Package branches TODO: Make working version main ###########################
 ~$ mkdir -p <dir_name>/src
 ~$ cd <dir_name>/src
