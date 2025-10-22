@@ -19,7 +19,7 @@
 ~/<dir_name>/src$ git clone -b slicer_mod_manual https://github.com/smart-needle-manual/trajcontrol_jhu.git
 
 #Turn ON hyperion interrogator black box. Blue light should be emitting from black box, and blue blinking should be coming from right side of PC (face the monitor)
-#DO NOT forget to test Hyperion Interrogator. If this is not working, ensure that optical and computer connections are secure, that ens1fl is set to Hyperion, and that ens1f1 Hyperion is set to 10.0.0.56 in Settings (see top right of computer screen). The idea is: same network, different IP (n+1 rule).  
+#DO NOT forget to test Hyperion Interrogator. If this is not working, ensure that optical and computer connections are secure, that ens1f1 is set to Hyperion, and that ens1f1 Hyperion is set to 10.0.0.56 in Settings (see top right of computer screen). The idea is: same network, different IP (n+1 rule).  
 #New terminal
 cd ..
 cd ..
