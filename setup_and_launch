@@ -28,7 +28,7 @@ pyton3 plotFBGSpectra.py 10.0.0.55
 #Prepare to run launch files for needle shape sensing
 cd smart_needle_manual
 cd src
-# If build not done: colcon build --cmake-args -DOpenIGTLink_DIRR:PATH:=~/OpenIGTLink-build
+# If build not done (remove build, install, log, and build from src): colcon build --cmake-args -DOpenIGTLink_DIRR:PATH:=~/OpenIGTLink-build
 #In a new terminal
 . install/setup.bash
 ros2 launch trajcontrol jhu_needle.launch.py manual_mode:=True
@@ -38,7 +38,7 @@ ros2 run hyperion_interrogator calibrate_sensors --ros-args -r __ns:=/needle
 #Hit Slicer settings like icon in ~/Slicer-5.8.1-linux-amd64$
 #In a new terminal (ideal)
 ros2 launch ros2_igtl_bridge bridge.launch.py
-#Use dropdown menu in Slicer to go to OpenIGT > SmartNeedle
+#Use dropdown menu in Slicer to go to IGT > SmartNeedle
 #Create new Linear Transform
 Start Client
 #In a new terminal (best). This default command should work.
