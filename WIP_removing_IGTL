@@ -44,3 +44,9 @@ Another option is to log it directly to the console in ProcessIGTLMessage.
 
 To verify latency, add metadata, or add new OpenIGTLink message types, these will be done in the converter layer.
 
+2. Let's take a look at what Slicer does with the NeedleShapeZ data once it receives it, specifically how it renders or updates the MRML node. Let's also consider how perhaps in the Markups module one would manually publish such topic information in Slicer.
+
+
+
+
+
