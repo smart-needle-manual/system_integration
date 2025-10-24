@@ -190,6 +190,28 @@ Slicer ←→ ROS2 over DDS, one script, all in Python.
 
 Why this works:
 
+/state/current_shape contains geometry_msgs/PoseArray, ideal for describing a path or 3D curve; Slicer's Python API speaks VTK coordinate arrays, which map 1:1 with ROS positions; and ~20 lines are needed to logically go from one to the other.
+
+No serialization, intermediate topics, or ROS bridge.
+
+Option to make the code persistent or modular: either wrap the code in a Slicer scripted module so it autostarts when Slicer opens, or use Slicer's Python startup script 
+
+.slicerrc.py 
+
+to auto-connect at launch.
+
+E.g.:
+
+# ~/.slicerrc.py
+import slicer
+import my_slicer_ros2_bridge  # Your script from above
+my_slicer_ros2_bridge.start()
+------------------------------------------------------------------------------------------------------------------------------
+| Method                           | Code Required | Bridge      | Real-time | Notes                |
+| -------------------------------- | ------------- | ----------- | --------- | -------------------- |
+| `igtl_node.cpp` + OpenIGTLinkIF  | Heavy         | C++         | ✅         | Legacy standard      |
+| `pyigtl` inside ROS              | Medium        | Python-only | ✅         | Good fallback        |
+| **SlicerROS2 Python subscriber** | 💡 Minimal    | ❌ None      | ✅         | Most direct & modern |
 
 
 
