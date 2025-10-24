@@ -182,6 +182,14 @@ def ros_spin():
 spin_thread = threading.Thread(target=ros_spin, daemon=True)
 spin_thread.start()
 
+------------------------------------------------------------------------------------------------------------------------------
+
+This script subscribes to /state/current_shape from ShapeSensingNeedleNode, creates a Markups Curve node in the Slicer scene, updates it live as the PoseArray changes, and does not use ros2_igtl_bridge, C++ nodes, or OpenIGTLink.
+
+Slicer ←→ ROS2 over DDS, one script, all in Python.
+
+Why this works:
+
 
 
 
