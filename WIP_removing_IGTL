@@ -126,6 +126,61 @@ STRING_OUT is needed for synchronization or custom modules. The POINT message, w
 | Remove C++ bridge                     | Use `pyigtl` (pure Python client) | Avoids rebuilding ROS–IGTL bridge         |
 | Skip OpenIGTLink entirely             | Use `SlicerROS2`                  | Direct ROS2 in Slicer; no IGTL, pure ROS2 |
 
+Everything up to ShapeSensingNeedleNode contains the true data source, the PoseArray describing needle shape. Everything after that is just packaging and transport.
+
+The real goal is to let Slicer directly see /state/current_shape without any intermediate 'bridge' or redundant code. We will use Slicer-native tools.
+
+Independent, built-in Slicer options:
+
+| Connection type      | Uses               | Protocol                 | Best for                                       |
+| -------------------- | ------------------ | ------------------------ | ---------------------------------------------- |
+| 🧩 **OpenIGTLinkIF** | “legacy” method    | OpenIGTLink TCP messages | Hardware devices, pre-built bridges            |
+| 🧠 **SlicerROS2**    | direct ROS2 client | DDS (ROS2 middleware)    | Native ROS2 topics like `/state/current_shape` |
+
+The second option makes sense for our use case. We will use a SlicerROS2 extension. It speaks to ROS2 natively, without wrappers, IGTL_POINT_OUT, or metadata strings.
+
+Problem assumptions:
+- Slicer build has SlicerROS2 extension installed.
+- ROS2 network is already working, e.g. ros2 topic list shows /state/current_shape.
+
+Inside Slicer's Python interactor or in a scripted module, we can do:
+
+import slicer
+import rclpy
+from geometry_msgs.msg import PoseArray
+import vtk
+
+# 1️⃣ Initialize ROS2 (only once)
+rclpy.init()
+node = rclpy.create_node('slicer_needle_listener')
+
+# 2️⃣ Callback to convert ROS PoseArray → Slicer Markups curve
+def shape_callback(msg):
+    # Clear old data (optional: reuse a node)
+    name = "NeedleShape"
+    existing = slicer.util.getNode(name) if slicer.util.getNodesByClassByName('vtkMRMLMarkupsCurveNode', name) else None
+    curveNode = existing or slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsCurveNode", name)
+    curveNode.RemoveAllControlPoints()
+    
+    # Add points from PoseArray
+    for pose in msg.poses:
+        curveNode.AddControlPointWorld(vtk.vtkVector3d(pose.position.x, pose.position.y, pose.position.z))
+
+    # Optional: auto-display or color
+    displayNode = curveNode.GetDisplayNode()
+    if displayNode:
+        displayNode.SetColor(1, 0, 0)  # Red line
+        displayNode.SetLineThickness(2.0)
+
+# 3️⃣ Subscribe to your topic
+sub = node.create_subscription(PoseArray, '/state/current_shape', shape_callback, 10)
+
+# 4️⃣ Run ROS spin loop in background
+import threading
+def ros_spin():
+    rclpy.spin(node)
+spin_thread = threading.Thread(target=ros_spin, daemon=True)
+spin_thread.start()
 
 
 
