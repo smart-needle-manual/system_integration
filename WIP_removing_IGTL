@@ -1,0 +1,46 @@
+1. Once we do . install/setup.bash, we can see /IGTL_POINT_OUT and /IGTL_STRING_OUT to Slicer, but not /IGTL_POINT_IN and /IGTL_STRING_IN from Slicer. Why?
+Ans: Because of the topic publishers and their data types. Let's consider, first, the structure of the /IGTL_*_OUT messages. 
+
+ros2 topic echo /IGTL_STRING_OUT name: NeedleShapeHeader data: 2025-10-24 09:43:37.811;303;402;zFrame --- 
+ros2 topic echo /IGTL_POINT_OUT name: NeedleShapeZ pointdata: - x: 0.0 y: 0.0 z: 200.0 - x: 0.0 y: 0.0 z: 200.00000000167904 - x: -3.093342991866126e-06 y: -1.2461235326727167e-05 z: 200.5000000015142 - '...'
+
+We have here a data stream out on /IGTL_STRING_OUT and /IGTL_POINT_OUT, the first a header message containing timestamp and identifiers, and the second a 3D curve message with a pointdata array of (x,y,z) coordinates describing the reconstructed shape of a needle.
+
+In the example with the DEFAULT MESSAGE from system integration, the NeedleShapeZ sample is a series of point sampled along the needle's length, starting at z = 200 mm and increasing to around 262 mm, while the x and y drift gradually negative, meaning the needle bends smoothly in a particular direction.
+
+Looking at the igtl_node.cpp in ros2_igtl_bridge, which takes in /IGTL_*_OUT, the internal structure is not changed. Note that the /IGTL_*_IN topics cannot be echoed because they ar einput topics consumed by the bridge rather than normal ROS message topics with a known message type being published by a ROS node.
+They are dynamically created subscriptions by the bridge to receive messages you want to send to Slicer, not publishers.
+
+So, /IGTL_*_OUT is published by ROS and sent to Slicer. /IGTL_*_IN is subscribed by ROS and received from Slicer. Since we are not publishing anything on /IGTL_*_IN inside ROS, there is no message in the ROS ecosystem to echo, even though the bridge itself forwards network data to Slicer over the OpenIGTLink socket.
+
+On the backend, this->converterManager->AddConverter(string, 10, "IGTL_STRING_IN", "IGTL_STRING_OUT");
+this->converterManager->AddConverter(pointarray, 10, "IGTL_POINT_IN", "IGTL_POINT_OUT");
+
+, with each AddConverter call registering a ROS publisher for the _OUT topic, a ROS subscription for the _IN topic, and an OpenIGTLink message type handler that knows how to serialize/deserialize OpenIGTLink packets.
+
+| Direction | ROS Topic         | Role                                        | Seen by ROS2 tools        | Seen by Slicer                     |
+| --------- | ----------------- | ------------------------------------------- | ------------------------- | ---------------------------------- |
+| OUT       | `/IGTL_POINT_OUT` | Publishes `ros2_igtl_bridge/msg/PointArray` | ✅ yes (`ros2 topic echo`) | ✅ yes                              |
+| IN        | `/IGTL_POINT_IN`  | Subscribes for same type                    | 🚫 no (not published)     | ✅ yes (Slicer sends updates to it) |
+
+When we see the needle in Slicer, that is because Slicer is reading the /IGTL_POINT_OUT data, the outgoing message. Slicer's own messages would come bcak into /IGTL_POINT_IN, but those don't appear as ROS publications unless another ROS node publishes them.
+
+In terms of seeing what Slicer sees, topic echo of /IGTL_*_OUT is for the data Slicer receives and uses to render the needle.
+
+To see what is being recieved from Slicer, the igtl_node.cpp would need to be modified to include for example a publisher republishing /IGTL_POINT_IN data once received by the converter, e.g.:
+
+// Inside RIBConverterPointArray::ReceiveIGTLMessage(...)
+// after deserializing the IGTL data:
+publisher_->publish(ros_msg);  // republish the converted message
+
+Another option is to log it directly to the console in ProcessIGTLMessage.
+
+| Topic              | Purpose                              | Why `ros2 topic echo` fails | What Slicer “sees”   |
+| ------------------ | ------------------------------------ | --------------------------- | -------------------- |
+| `/IGTL_STRING_OUT` | Outgoing string header to Slicer     | ✅ works (you can echo)      | ✅ Slicer reads it    |
+| `/IGTL_POINT_OUT`  | Outgoing needle geometry to Slicer   | ✅ works (you can echo)      | ✅ Slicer reads it    |
+| `/IGTL_STRING_IN`  | Incoming string messages from Slicer | 🚫 subscriber only          | ✅ Slicer writes here |
+| `/IGTL_POINT_IN`   | Incoming point data from Slicer      | 🚫 subscriber only          | ✅ Slicer writes here |
+
+To verify latency, add metadata, or add new OpenIGTLink message types, these will be done in the converter layer.
+
