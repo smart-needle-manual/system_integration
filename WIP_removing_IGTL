@@ -79,8 +79,41 @@ ROS2 --> OpenIGTLink has to map this PoseArray into an IGTL-compatible format, s
 
 Hence, the /IGTL_POINT_OUT topic and /IGTL_STRING_OUT serve as the translation layer between this /state/current_shape and what Slicer visualizes.
 
+From dummy_smart_needle_interface.py, we get a SmartNeedleInterface node which is a bridge sitting between ROS2 and the OpenIGTLink bridge (igtl_node.cpp).
 
+It subscribes to /needle/state/current_shape [geometry_msgs/PoseArray], extracts and reformats that datat into two IGTL-friendly messages:
 
+String message IGTL_STRING_OUT carrying a text header with metadata and a PointArray message IGTL_POINT_OUT carrying the actual 3-D curve points.
+
+It publishes both every second via timer_shape_callback so igtl_node.cpp can forward them out through the OpenIGTLink socket to Slicer.
+
+| Topic              | Message type                      | Purpose                                           | What Slicer uses it for                                                          |
+| ------------------ | --------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `/IGTL_STRING_OUT` | `ros2_igtl_bridge/msg/String`     | Metadata: timestamp, sample count, frame ID, etc. | Optional. Some Slicer modules use it to identify or synchronize multi-part data. |
+| `/IGTL_POINT_OUT`  | `ros2_igtl_bridge/msg/PointArray` | 3-D coordinates of the reconstructed needle shape | The actual geometry Slicer turns into a Markups Curve.                           |
+
+The igtl_node.cpp bridge has converters for both, so each gets serialized as an OpenIGTLink message (STRING and POINT respectively) and sent over the socket.
+
+Again, structure of the outgoing messages:
+
+IGTL_STRING_OUT:
+ros2_igtl_bridge/msg/String
+  name: "NeedleShapeHeader"
+  data: "2025-10-24 09:43:37.811;303;402;zFrame"
+IGTL_POINT_OUT:
+ros2_igtl_bridge/msg/PointArray
+  name: "NeedleShapeZ"
+  pointdata:
+    - {x: 0.0,     y: 0.0,     z: 200.0}
+    - {x: -0.0036, y: -0.0159, z: 202.02}
+    ...
+
+Inside Slicer's OpenIGTLinkIF, when it receives a message named NeedleShapeZ, it creates or updates a Markups Curve node called "NeedleShapeZ" using the points and optionally reads NeedleShapeHeader to annotate the time/frame.
+That is how we get the visible bending needle.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+So far we have the node that publishes /state/current_shape and the node that listens to it and republishes IGTL messages.
 
 
 
