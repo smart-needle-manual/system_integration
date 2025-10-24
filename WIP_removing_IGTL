@@ -53,6 +53,35 @@ Each connector can either send (from Slicer externally) MRML nodes, or receive M
 
 The Markups module (Markups Fiducials*, Curve, or Line) creates MRML nodes like vtkMRMLMarkupsFiducialNode and vtkMRMLMarkupsCurveNode. These can contain lists of 3D points, e.g. /IGTL_POINT_OUT data type.
 
+3. Studying the information flow.
+From shape_sensing_needle.py, we get the ShapeSensingNeedleNode, a ROS2 node that reconstructs the current needle shape from sensor data and publishes it as a geometry_msgs/PoseArray on the topic /state/current_shape.
+
+The essential components of that big file are below:
+
+in publish_shape():
+pmat, Rmat = self.get_needleshape()     # Nx3 positions and Nx3x3 rotations
+header = Header(stamp=..., frame_id='needle')
+msg_shape = utilities.poses2msg(pmat, Rmat, header=header)
+self.pub_shape.publish(msg_shape)
+
+So that each mesage looks like:
+geometry_msgs/msg/PoseArray
+  header:
+    frame_id: "needle"
+  poses:
+    - position: {x: ..., y: ..., z: ...}
+      orientation: {x: ..., y: ..., z: ..., w: ...}
+    - ...
+
+This is exactly the 3D curve along the needle, sampled at some ds spacing.
+
+ROS2 --> OpenIGTLink has to map this PoseArray into an IGTL-compatible format, since Slicer doesn't understand PoseArray directly. It expects IGTL messages like POINT for Markups/Fiducials/Curves, STRING (metadata/headers), TRANSFORM, IMAGE, etc.
+
+Hence, the /IGTL_POINT_OUT topic and /IGTL_STRING_OUT serve as the translation layer between this /state/current_shape and what Slicer visualizes.
+
+
+
+
 
 
 
