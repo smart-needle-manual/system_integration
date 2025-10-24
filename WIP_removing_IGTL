@@ -115,6 +115,18 @@ That is how we get the visible bending needle.
 
 So far we have the node that publishes /state/current_shape and the node that listens to it and republishes IGTL messages.
 
+4. If we want to turn /state/current_shape into IGTL_POINT_OUT data, with or without the STRING_OUT info, with in-built Python scripting and without igtl_node.cpp or dummy_smart_needle_interface.py, can we do it? How? 
+
+STRING_OUT is needed for synchronization or custom modules. The POINT message, with a valid .name field, is enough to make Slicer create or update a Markups node with that name. STRING_OUT is not strictly required to visualize geometry like needle shape, fiducials, curves. etc.
+
+| Goal                                  | Simplest path                     | Notes                                     |
+| ------------------------------------- | --------------------------------- | ----------------------------------------- |
+| Send `/state/current_shape` to Slicer | Keep `/IGTL_POINT_OUT` publisher  | Current system works fine                 |
+| Remove STRING_OUT                     | ✅ Safe                            | Only POINT_OUT is needed                  |
+| Remove C++ bridge                     | Use `pyigtl` (pure Python client) | Avoids rebuilding ROS–IGTL bridge         |
+| Skip OpenIGTLink entirely             | Use `SlicerROS2`                  | Direct ROS2 in Slicer; no IGTL, pure ROS2 |
+
+
 
 
 
