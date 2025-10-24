@@ -440,6 +440,23 @@ class NeedleShapeSubscriberWithTip:
 # subscriber = NeedleShapeSubscriberWithTip('/state/current_shape')
 # To stop later:
 # subscriber.shutdown()
+-----------------------------------------------------------------------------------------------------------------------------
+What this does:
+- Subscribes to /state/current_shape directly via ROS2
+- Draws red curve of needle shape
+- Creates a green 3D axes marker at the tip pose
+- Updats both live as data streams in
+- No igtl_node.cpp, no smart_needle_interface, no bridge. Just Slicer + ROS2.
+
+Notes: Requires Slicer with ROS2 Python bindings, e.g. running in a ROS2 environment. If you get a "Cannot import geometry_msgs" error, you need to launch Slicer inside your ROS2 workspace:
+
+source /opt/ros/humble/setup.bash
+./Slicer
+
+Adjust tip axes via:
+
+axes_source.SetTotalLength(5.0, 5.0, 5.0)
+
 
 
 
