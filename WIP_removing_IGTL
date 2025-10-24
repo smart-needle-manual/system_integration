@@ -213,6 +213,233 @@ my_slicer_ros2_bridge.start()
 | `pyigtl` inside ROS              | Medium        | Python-only | ✅         | Good fallback        |
 | **SlicerROS2 Python subscriber** | 💡 Minimal    | ❌ None      | ✅         | Most direct & modern |
 
+Given the existing stack, keep ShapeSensingNeedleNode exactly as it is, remove smart_needle_interface and igtl_node.cpp, and add the SlicerROS2 Python subscriber.
+
+This is the cleanest and lightest architecture:
+ShapeSensingNeedleNode
+      ↓
+  /state/current_shape  (PoseArray)
+      ↓
+  SlicerROS2 Python script
+      ↓
+  vtkMRMLMarkupsCurveNode ("NeedleShape")
+
+#Example which builds a self-contained Slicer Python module. This subscribes to /state/current_shape ROS2 topic, converts the PoseArray into a Markups Curve, and updates it live in the Slicer scene.
+"""
+NeedleShapeSubscriber.py
+Slicer Python module to subscribe to ROS2 PoseArray and display as a Markups Curve
+"""
+
+import slicer
+import rclpy
+from geometry_msgs.msg import PoseArray
+import vtk
+import threading
+
+class NeedleShapeSubscriber:
+    def __init__(self, topic_name='/state/current_shape', curve_name='NeedleShape'):
+        self.topic_name = topic_name
+        self.curve_name = curve_name
+
+        # 1️⃣ Initialize ROS2 if not already initialized
+        try:
+            rclpy.get_default_context()
+        except RuntimeError:
+            rclpy.init()
+
+        self.node = rclpy.create_node('slicer_needle_listener', namespace='')
+
+        # 2️⃣ Subscribe to PoseArray
+        self.subscriber = self.node.create_subscription(
+            PoseArray,
+            self.topic_name,
+            self.shape_callback,
+            10
+        )
+
+        # 3️⃣ Start ROS spin in a background thread
+        self.spin_thread = threading.Thread(target=self.ros_spin, daemon=True)
+        self.spin_thread.start()
+
+        # 4️⃣ Create the curve node (or get existing)
+        existing_nodes = slicer.util.getNodesByClassByName('vtkMRMLMarkupsCurveNode', self.curve_name)
+        if existing_nodes:
+            self.curve_node = existing_nodes[0]
+        else:
+            self.curve_node = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsCurveNode", self.curve_name)
+            display_node = self.curve_node.GetDisplayNode()
+            if display_node:
+                display_node.SetColor(1, 0, 0)  # Red line
+                display_node.SetLineThickness(2.0)
+
+        slicer.app.processEvents()
+
+    def ros_spin(self):
+        """Run ROS2 event loop in background"""
+        rclpy.spin(self.node)
+
+    def shape_callback(self, msg):
+        """Convert PoseArray to Markups Curve"""
+        if not self.curve_node:
+            return
+
+        # Remove old points
+        self.curve_node.RemoveAllControlPoints()
+
+        # Add points from PoseArray
+        for pose in msg.poses:
+            self.curve_node.AddControlPointWorld(vtk.vtkVector3d(
+                pose.position.x,
+                pose.position.y,
+                pose.position.z
+            ))
+
+        slicer.app.processEvents()  # Refresh Slicer scene
+
+    def shutdown(self):
+        """Stop ROS2 node cleanly"""
+        self.node.destroy_node()
+        rclpy.shutdown()
+        self.spin_thread.join()
+
+# ----------------------
+# Example usage in Slicer Python Interactor
+# ----------------------
+# subscriber = NeedleShapeSubscriber()
+# (The curve will update live)
+# To stop: subscriber.shutdown()
+--------------------------------------------------------------------------------------------------------------------------
+
+Features include single python file, run from Python Interactor or dropped into Slicer's Python module directory. Direct ROS2 subscription without IGTL bridge. Updates Markups Curve whenever a new PoseArray arrives. CUstomizable to change topic_name or curve_name for multiple needles. Safe shutdown using shutdown() when want to stop ROS cleanly.
+
+#Example run:
+
+# Launch subscriber
+subscriber = NeedleShapeSubscriber(topic_name='/state/current_shape', curve_name='NeedleShape')
+
+# Later, if you need to clean up
+subscriber.shutdown()
+-----------------------------------------------------------------------------------------------------------------------------
+#To update this to also visualize tip orientation as is done in the SmartNeedleInterface, enhance Slicer-side script so it draws curve from /state/current_shape, extracts tip pose fom last Pose in PoseArray, and visualizes it as a small coordinate frame (axes) that updates in real time.
+
+"""
+NeedleShapeSubscriberWithTip.py
+Subscribe to ROS2 PoseArray (/state/current_shape)
+Display shape as a Markups Curve and visualize tip orientation in 3D
+"""
+
+import slicer
+import rclpy
+from geometry_msgs.msg import PoseArray
+import vtk
+import threading
+import numpy as np
+from scipy.spatial.transform import Rotation as R
+
+class NeedleShapeSubscriberWithTip:
+    def __init__(self, topic_name='/state/current_shape', curve_name='NeedleShape', tip_name='NeedleTip'):
+        self.topic_name = topic_name
+        self.curve_name = curve_name
+        self.tip_name = tip_name
+
+        # 1️⃣ Initialize ROS2 (if not already)
+        try:
+            rclpy.get_default_context()
+        except RuntimeError:
+            rclpy.init()
+
+        self.node = rclpy.create_node('slicer_needle_listener')
+
+        # 2️⃣ Subscribe to PoseArray
+        self.subscriber = self.node.create_subscription(
+            PoseArray,
+            self.topic_name,
+            self.shape_callback,
+            10
+        )
+
+        # 3️⃣ Start ROS2 spin loop
+        self.spin_thread = threading.Thread(target=self.ros_spin, daemon=True)
+        self.spin_thread.start()
+
+        # 4️⃣ Create or reuse the curve
+        existing_curves = slicer.util.getNodesByClassByName('vtkMRMLMarkupsCurveNode', self.curve_name)
+        self.curve_node = existing_curves[0] if existing_curves else slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsCurveNode", self.curve_name)
+        self.curve_node.GetDisplayNode().SetColor(1, 0, 0)
+        self.curve_node.GetDisplayNode().SetLineThickness(2.0)
+
+        # 5️⃣ Create or reuse a tip coordinate frame model
+        existing_tips = slicer.util.getNodesByClassByName('vtkMRMLModelNode', self.tip_name)
+        self.tip_node = existing_tips[0] if existing_tips else slicer.mrmlScene.AddNewNodeByClass("vtkMRMLModelNode", self.tip_name)
+        self.tip_node.CreateDefaultDisplayNodes()
+        self.tip_node.GetDisplayNode().SetColor(0, 1, 0)
+        self.tip_node.GetDisplayNode().SetSliceIntersectionVisibility(True)
+        self.tip_node.GetDisplayNode().SetVisibility3D(True)
+
+        # Create coordinate axes model for the tip
+        axes_source = vtk.vtkAxesActor()
+        axes_source.SetTotalLength(10.0, 10.0, 10.0)
+        self.axes_transform = vtk.vtkTransform()
+        self.tip_node.SetAndObserveTransformNodeID(None)
+        self.tip_node.SetUserMatrix(self.axes_transform.GetMatrix())
+
+        slicer.app.processEvents()
+
+    def ros_spin(self):
+        """Background ROS2 spin"""
+        rclpy.spin(self.node)
+
+    def shape_callback(self, msg):
+        """Called every time a new PoseArray arrives"""
+        if not msg.poses:
+            return
+
+        # --- Update the curve ---
+        self.curve_node.RemoveAllControlPoints()
+        for pose in msg.poses:
+            self.curve_node.AddControlPointWorld(vtk.vtkVector3d(
+                pose.position.x,
+                pose.position.y,
+                pose.position.z
+            ))
+
+        # --- Extract the tip pose (last one) ---
+        tip_pose = msg.poses[-1]
+        tip_position = np.array([tip_pose.position.x, tip_pose.position.y, tip_pose.position.z])
+        q = np.array([tip_pose.orientation.x, tip_pose.orientation.y, tip_pose.orientation.z, tip_pose.orientation.w])
+
+        # Convert quaternion → rotation matrix
+        Rmat = R.from_quat(q).as_matrix()
+        T = np.eye(4)
+        T[:3, :3] = Rmat
+        T[:3, 3] = tip_position
+
+        # Apply transform to tip visualization
+        m = vtk.vtkMatrix4x4()
+        for i in range(4):
+            for j in range(4):
+                m.SetElement(i, j, T[i, j])
+        self.tip_node.SetAndObserveMatrixTransformToParent(m)
+
+        slicer.app.processEvents()
+
+    def shutdown(self):
+        """Gracefully close the ROS node"""
+        try:
+            self.node.destroy_node()
+            rclpy.shutdown()
+        except Exception:
+            pass
+        if self.spin_thread.is_alive():
+            self.spin_thread.join()
+
+
+# ----------------------------
+# Example usage inside Slicer:
+# ----------------------------
+# subscriber = NeedleShapeSubscriberWithTip('/state/current_shape')
+# To stop later:
+# subscriber.shutdown()
 
 
 
