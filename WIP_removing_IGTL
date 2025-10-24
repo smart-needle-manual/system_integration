@@ -46,6 +46,17 @@ To verify latency, add metadata, or add new OpenIGTLink message types, these wil
 
 2. Let's take a look at what Slicer does with the NeedleShapeZ data once it receives it, specifically how it renders or updates the MRML node. Let's also consider how perhaps in the Markups module one would manually publish such topic information in Slicer.
 
+Inside Slicer, all OpenIGTLink communication is managed through the OpenIGTLinkIF module. It creates connector nodes which are network bridges between Slicer's MRML scene and an external device or program like ros2_igtl_bridge.
+
+Each connector can be a server mode which waits for a connection from ROS, or a Client mod connecting out to ROS (bridge).
+Each connector can either send (from Slicer externally) MRML nodes, or receive MRML nodes. That mapping correspondings to /IGTL_*_IN and /IGTL_*OUT topics, respectively.
+
+The Markups module (Markups Fiducials*, Curve, or Line) creates MRML nodes like vtkMRMLMarkupsFiducialNode and vtkMRMLMarkupsCurveNode. These can contain lists of 3D points, e.g. /IGTL_POINT_OUT data type.
+
+
+
+
+
 
 
 
