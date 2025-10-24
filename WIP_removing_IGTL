@@ -3,6 +3,8 @@ https://slicer.readthedocs.io/en/latest/developer_guide/script_repository.html
 
 https://slicer-ros2.readthedocs.io/en/v1.0/pages/nodes/topics.html
 
+https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#glossary
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 1. Once we do . install/setup.bash, we can see /IGTL_POINT_OUT and /IGTL_STRING_OUT to Slicer, but not /IGTL_POINT_IN and /IGTL_STRING_IN from Slicer. Why?
