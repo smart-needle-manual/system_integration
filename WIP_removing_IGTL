@@ -11,6 +11,8 @@ https://slicer.readthedocs.io/en/latest/user_guide/user_interface.html#python-co
 
 https://slicer.readthedocs.io/en/latest/user_guide/coordinate_systems.html#coordinate-system-convention-in-slicer
 
+https://slicer.readthedocs.io/en/latest/user_guide/data_loading_and_saving.html #VTK and MRML (so not DICOM I guess)
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 1. Once we do . install/setup.bash, we can see /IGTL_POINT_OUT and /IGTL_STRING_OUT to Slicer, but not /IGTL_POINT_IN and /IGTL_STRING_IN from Slicer. Why?
