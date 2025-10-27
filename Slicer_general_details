@@ -89,3 +89,85 @@ A plugin is any loadable, extensible component that adds functionality. Internal
 | 🧱 **Role Plugin**     | Adds *support for new data node types* — defines how they appear and behave in the Subject Hierarchy.                     | • Subclass `qSlicerSubjectHierarchyAbstractPlugin` (C++) or `AbstractScriptedSubjectHierarchyPlugin` (Python).<br>• Implement node type ownership (`canOwnSubjectHierarchyItem`), icon, tooltip, visibility handling, help text, and display name.<br>• Register during module setup. | • Ownership rules<br>• Node icons and tooltips<br>• Display visibility<br>• Help text and edit properties<br>• Displayed node name | **Core:** Markups, Models, SceneViews, Charts, Folder, Tables, Transforms, LabelMaps, Volumes<br>**Extensions:** Role plugin in *SlicerHeart* (cardiac nodes)                               |
 | ⚙️ **Function Plugin** | Adds *actions* (functions) to the **right-click context menu** for nodes or the scene — allows custom operations on data. | • Subclass `qSlicerSubjectHierarchyAbstractPlugin` (C++) or `AbstractScriptedSubjectHierarchyPlugin` (Python).<br>• Implement functions that define context menu actions (`nodeContextMenuActions`), specify applicable node types, and connect actions to logic.                     | • Context menu actions<br>• Scene-level actions<br>• Node-type filtering for actions<br>• Action logic handlers                    | **Core:** CloneNode, ParseLocalData, Register, Segment, DICOM, Volumes, Markups, Models, Annotations, Segmentations, Segments<br>**Extensions:** Function plugin in *Segment Editor* module |
 
+Markups Module: Used to create and edit markups (point list, line, angle, curve, closed curve, plane, ROI) and adjust their display properties.
+
+Placing new markups (control points):
+1. Toggle the Markups Toolbar in the Mouse Interaction toolbar to show/hide the Markups toolbar.
+
+2. Using Markups toolbar, click markups type buttong to create a new object. Mouse interaction mode will automatically switch into control point placement mode.
+
+3. Clock the down arrow of the control point place button in the Markups toolbar to select the "place multiple control points" checkbox to keep placing control points continuously, without the need to click the place button after each point.
+
+4. Lift-click a slice view or 3D view to place points.
+
+5. Double-left-click or right-click to finish point placement
+
+Edit control positions in existing markups:
+1. Make sure the correct markup is selected in the markups module or Markups toolbar.
+
+2. Left-click and drag a control point to move it.
+
+3. Left-click a control point to jump to it in all slice viewers. This helps in adjusting its position along all axes.
+
+4. Right-click to delete or rename a control point or change markup properties.
+
+5. Ctrl + Left-click to place a new control point on a markups curve.
+
+6. Enable Display/Interaction/Visible to show a widget that allows translation/rotation of the entire widget.
+
+Edit properties of a markup that is picked in a view: To pick a markup in a viewer so that its propeties can be edited in the Markups module, right click on it in a slice view or 3D view and choose "Edit properties."
+
+Options available to edit Plane and ROI markups
+
+Keyboard Shortcuts When Markups toolbar is displayed: Ctrl+Shift+A for creating a new markup, control+shift+T for toggling placing multiple points, and Control+Shift+spcae for placing a new control point
+
+Plethora of display options
+
+| **Section**                           | **Option / Control**                  | **Description / Function**                                                                                                                         |
+| ------------------------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Interaction**                       | **Locked**                            | Toggles whether markups can be moved by mouse interactions, overriding individual control point locks.                                             |
+|                                       | **Fixed list of points**              | Toggles ability to add/remove control points; positions can still be undefined.                                                                    |
+|                                       | **Click to Jump Slices**              | Enables slice viewers to jump to a control point when clicked in the name column. Includes options for centering and using arrow keys to navigate. |
+|                                       | **Show slice intersections**          | Shows or hides slice intersection lines in 2D views.                                                                                               |
+| **Buttons (Apply to control points)** | **Toggle visibility flag**            | Toggles visibility for all control points (menu: all visible/invisible).                                                                           |
+|                                       | **Toggle selected flag**              | Toggles selection state for all control points (menu: all selected/deselected).                                                                    |
+|                                       | **Toggle lock flag**                  | Toggles lock state for all control points (menu: all locked/unlocked).                                                                             |
+|                                       | **Skip highlighted control points**   | Sets highlighted control points’ state to *Skip* (skipped during placement).                                                                       |
+|                                       | **Clear highlighted control points**  | Clears highlighted points’ position and sets state to *Clear*.                                                                                     |
+|                                       | **Delete highlighted control points** | Deletes highlighted control points from the active list.                                                                                           |
+|                                       | **Remove all control points**         | Deletes all control points in the active list (empties list).                                                                                      |
+| **Display Options**                   | **Transformed**                       | Shows transformed coordinates (applying current transforms). Unchecked shows raw RAS values.                                                       |
+|                                       | **Hide RAS**                          | Hides or shows coordinate columns (RAS). Right-click rows to view coordinates.                                                                     |
+| **Control Points Table**              | **Context menu (right-click)**        | Options include: show full precision coordinates, measure distance, delete, jump to point, refocus 3D view, or copy/move point to another list.    |
+| **Columns**                           | **Selected**                          | Checkbox indicating if control point is selected (click to toggle).                                                                                |
+|                                       | **Locked**                            | Lock icon (open/closed padlock) indicating lock state; click to toggle.                                                                            |
+|                                       | **Visibility**                        | Eye icon showing visibility state; click to toggle.                                                                                                |
+|                                       | **Name**                              | Short name displayed next to glyphs in viewers.                                                                                                    |
+|                                       | **Description**                       | Longer text description (not shown in viewers).                                                                                                    |
+|                                       | **X, Y, Z**                           | RAS coordinates (3 decimal places shown).                                                                                                          |
+|                                       | **State**                             | Displays current control point state (Edit, Skip, Restore, Clear); click to cycle through.                                                         |
+| **State Definitions**                 | **Edit**                              | Control point is being placed; only one can be edited at a time.                                                                                   |
+|                                       | **Skip**                              | Control point undefined; cannot be selected for placement.                                                                                         |
+|                                       | **Restore**                           | Restores the last known position of the control point.                                                                                             |
+|                                       | **Clear**                             | Control point not yet placed; available for placement.                                                                                             |
+| **Advanced Section**                  | **Move Up**                           | Moves highlighted control point up one position in the list.                                                                                       |
+|                                       | **Move Down**                         | Moves highlighted control point down one position in the list.                                                                                     |
+|                                       | **Add Control Point**                 | Adds a new unplaced control point with undefined position.                                                                                         |
+| **Naming**                            | **Name Format**                       | Format for naming new control points (`%N`=list name, `%d`=index).                                                                                 |
+|                                       | **Apply**                             | Renames all control points based on current format; can be used to renumber points.                                                                |
+|                                       | **Reset**                             | Resets name format to default `%N-%d`.                                                                                                             |
+| **Conversion**                        | **Convert annotation fiducials**      | Converts annotation fiducials to markups and removes the original annotation nodes.                                                                |
+
+
+Curve setting section: Curve type can be linear, spline, polynomial, or shrot distance on surface. Constrain to Model generates curve from control points and projects onto surface, except for shortest distance ons ruface curve type, the cot function is minimzed to find path connecting two control points.
+
+Maximum projection distance provides max search radius tolerance defining the allowavle projection distance for projecting curve points. It is specified as  apercentage of the model's bounding box diagnoal in world coordinate system.
+
+Resample:
+
+Output node replces control points by curve points sampled at equal distances.
+Constrain points to surface: If a model is selected, the resampled points projected to the chosen mdodel surface.
+Max projection distance: As above
+
+Plane and ROI settings options available. Also can create template landmarks.
+
