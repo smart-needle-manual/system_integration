@@ -1,0 +1,91 @@
+Slicer's data model is built around a MRML scene, which is a graph of interconnected nodes. Each item in the Data module, such as subjects, studies, volumes, transforms, markups, modules,
+and more is a MRML node. Nodes can reference each other. Examples: A volume node may be transformed by a transform node; a model might reference a scalar overlay volume; a segmentation can reference a master volume.
+
+In the subject hierarchy, the subject is the top-level grouping, usually representing one patient.
+Studies are optional layers often used for multiple imaging sessions.
+Data nodes such as volumes and models are MRML nodes under the hierarchy.
+
+Each hierarchy item may have references:
+Parent/child relationships provide hierarchical organization in the Data tree; transform references define spatial relationships; and other child/parent node references exist,
+such as segmentations referencing volumes, or models referencing transforms.
+
+In the transform reference case, if node A is transformed by node B, nodeA's transformID is the ID of node B. When Slicer renders A, it applies transform B automatically.
+When you remove a transform node, Slicer checks what nodes reference it; this is where highlighting helps. Highlight color visualizes dependency directionality. 
+
+Green emphasizes items referencing the current item --> Incoming edges
+Yellow "  "   "   "  " referenced by "   "  "   "  "  "   Outgoing " "
+Light yellow "   "   " recursively referenced by the current item --> Deeper layers -- "What do I indirectly depend on"
+
+Consider the following example:
+
+Subject (Patient)
+└── Study (Scan session)
+     ├── Volume1          ← Data Node (original MRI scan)
+     ├── Volume2          ← Data Node (registered MRI scan)
+     ├── Segmentation1    ← Data Node (segmentation of Volume2)
+     ├── Transform1       ← Transform Node (aligns Volume2 to Volume1)
+     └── Transform2       ← Transform Node (moves Transform1 to world space)
+
+Segmentation1 (Data Node) ──→ Volume2 (Data Node) ──→ Transform1 (Transform Node) ──→ Transform2 (Transform Node)
+
+Subject (Patient)
+└── Study (Session)
+     ├── 🟩 Segmentation1   →  🟨 Volume2  →  🟨 Transform1  →  🟨◌ Transform2
+     │                          ↑
+     │                     Selected node
+     │
+     ├── Volume1  (unrelated, stays gray)
+     └── (All under Study)
+
+In this example: Segmentation1 is based on Volume2 (referencing it as its master volume), Volume2 is transformed by Transform1, and Transform1 is transformed by Transform2 (a parent transform).
+
+A plugin is any loadable, extensible component that adds functionality. Internally, msot are implemented as modules in Python or C++, or as plugins within modules.
+
+| Type                                    | Purpose                                                               | Typical Examples                                           |
+| --------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **Loadable module (C++)**               | Performance-critical processing, visualization, IO                    | Volumes, Models, Segmentations, Transforms                 |
+| **Scripted module (Python)**            | Custom logic and UI, fast development                                 | Segment Editor Effects, Registration plugins, AI inference |
+| **CLI module (Command-Line Interface)** | Executes external command-line tools with standard I/O                | BRAINS registration, diffusion tools                       |
+| **Subject hierarchy plugin**            | Extends how items appear in the Data module and how references behave | Subject hierarchy display rules, node type icons           |
+| **DICOM plugin**                        | Adds support for new DICOM modalities or private tags                 | RT, PET, Ultrasound, etc.                                  |
+| **Markups / Annotation plugins**        | Add new types of markups (points, curves, planes, ROI)                | Fiducials, Curve, Angle, ROI                               |
+| **I/O plugins**                         | Add import/export support for new file formats                        | Custom 3D formats, medical device output                   |
+| **Python scripted logic modules**       | Provide backend logic callable from Python                            | e.g., custom pipelines or AI preprocessing steps           |
+| Module                | Purpose                                                                                     |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| **Data**              | Shows subject hierarchy and MRML nodes; handles references (the one you’ve been analyzing). |
+| **DICOM**             | Manages DICOM import/export, database, and plugins.                                         |
+| **Transforms**        | Displays and edits transform nodes.                                                         |
+| **Subject hierarchy** | Underlying logic for Data module hierarchy organization.                                    |
+| Module                             | Purpose                                                  |
+| ---------------------------------- | -------------------------------------------------------- |
+| **Volumes**                        | Manages scalar and vector volumes, window/level display. |
+| **Slice Viewer / 3D Viewer**       | Built-in display controls for visualization.             |
+| **Volume Rendering**               | GPU volume rendering controls.                           |
+| **Models**                         | Display and manage surface meshes (STL, OBJ, etc.).      |
+| **Segmentations / Segment Editor** | Create, edit, and manage segmentation nodes.             |
+| Module                                            | Purpose                                  |
+| ------------------------------------------------- | ---------------------------------------- |
+| **Transforms**                                    | View, edit, and combine transform nodes. |
+| **Landmark Registration / Fiducial Registration** | Registration via markups.                |
+| **General Registration (BRAINS)**                 | Advanced CLI-based registration.         |
+| Module                 | Purpose                                         |
+| ---------------------- | ----------------------------------------------- |
+| **Label Statistics**   | Compute voxel counts and volumes for labelmaps. |
+| **Segment Statistics** | Compute measurements for segmentations.         |
+| **PET DICOM tools**    | Quantify SUV and related measures.              |
+| Module                          | Purpose                                      |
+| ------------------------------- | -------------------------------------------- |
+| **Python Interactor**           | Console access to MRML scene and Python API. |
+| **Sample Data**                 | Loads example datasets for testing.          |
+| **Screen Capture / Animations** | Capture renderings for documentation.        |
+| **Application Settings**        | System and display configuration.            |
+
+
+
+| **Plugin Type**        | **Purpose / What It Does**                                                                                                | **Implementation (How to Make It)**                                                                                                                                                                                                                                                   | **Defines / Customizes**                                                                                                           | **Examples (Built-in or Extensions)**                                                                                                                                                       |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 📝 **Write Plugin**    | Adds or extends *data writing / export* capabilities for specific node types (e.g., saving special file formats).         | • Subclass of `qSlicerSubjectHierarchyAbstractPlugin` (C++) or `AbstractScriptedSubjectHierarchyPlugin` (Python).<br>• Implement write logic in `writeData()` and define supported node types.<br>• Register the plugin in the module’s `setup()` or `__init__()`.                    | • File type support<br>• Export actions in context menu<br>• Node-to-file mapping rules                                            | *Less common in core; examples appear in extensions that add export formats (e.g., SlicerRT for DICOM-RT, SlicerHeart for cardiac structures)*                                              |
+| 🧱 **Role Plugin**     | Adds *support for new data node types* — defines how they appear and behave in the Subject Hierarchy.                     | • Subclass `qSlicerSubjectHierarchyAbstractPlugin` (C++) or `AbstractScriptedSubjectHierarchyPlugin` (Python).<br>• Implement node type ownership (`canOwnSubjectHierarchyItem`), icon, tooltip, visibility handling, help text, and display name.<br>• Register during module setup. | • Ownership rules<br>• Node icons and tooltips<br>• Display visibility<br>• Help text and edit properties<br>• Displayed node name | **Core:** Markups, Models, SceneViews, Charts, Folder, Tables, Transforms, LabelMaps, Volumes<br>**Extensions:** Role plugin in *SlicerHeart* (cardiac nodes)                               |
+| ⚙️ **Function Plugin** | Adds *actions* (functions) to the **right-click context menu** for nodes or the scene — allows custom operations on data. | • Subclass `qSlicerSubjectHierarchyAbstractPlugin` (C++) or `AbstractScriptedSubjectHierarchyPlugin` (Python).<br>• Implement functions that define context menu actions (`nodeContextMenuActions`), specify applicable node types, and connect actions to logic.                     | • Context menu actions<br>• Scene-level actions<br>• Node-type filtering for actions<br>• Action logic handlers                    | **Core:** CloneNode, ParseLocalData, Register, Segment, DICOM, Volumes, Markups, Models, Annotations, Segmentations, Segments<br>**Extensions:** Function plugin in *Segment Editor* module |
+
