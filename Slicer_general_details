@@ -171,3 +171,22 @@ Max projection distance: As above
 
 Plane and ROI settings options available. Also can create template landmarks.
 
+Slicer API: Concepts and use
+
+Slicer core infrastructure is mostly implemented in C++ and mde available in Python in the slicer namespace.
+
+C++ classes are made available in Python using two mechanisms: PythonQt and VTK Python wrapper. They have a few slight differences:
+
+Qt classes (class name starts with q or Q): for example, qSlicerMarkupsPlaceWidget. These classes are all derived from QObject and follow Qt conventions. They support properties, signals, and slots.
+
+VTK classes (class name starts with vtk): for example, vtkMRMLModelDisplayNode. These classes are all derived from vtkObject and follow VTK conventions.
+
+The documentation is generated using the Doxygen tool, which uses C++ documentation. Rules for intepreting documentation for Python:
+
+Public member functions can be accessed as objectName.memberFunctionName(arguments). For example, a method of the slicer.mrmlScene object can be caled as slicer.mrmlScene,GetNumberOfNodesByClass('vtkMRMLTransformNode').
+
+In QT classes, only methods that have Q_INVOKABLE keyword next to them ar eavailable from Python. 
+
+virtual and override specifiers can be ignored as they just indicate that the method can be or is overridden in a child class.
+
+className...
