@@ -279,3 +279,33 @@ This panel may display application status, such as current operation in progress
 
 Review Loaded Data
 
+Data available in Slicer can be reviewed in the Data module, which can be found on the toolbar or the modules list.
+
+The Data module's default Subject hierarchy tab can show the datasets in a tree hierarchy, arranged as patient/study/series as typical in DICOM, or any other folder structure.
+
+The Subject hierarchy view contains numerous built-in functions for all types of data. These functions can be accessed by right-clicking the node in the tree. The list of actions differs for each data type, so it is useful to explore the options.
+
+Selecting Displayed Data
+
+Data module's Subject hierarchy shows all data sets in the sciene. Click the 'eye' icon to show/hide an item in all views. Drag-and-drop an item into a view to show it in that view.
+
+Multiple items can be selected in the subject hierarchy tree using Ctrl-Left-Click or Shift-Left-Click and dragged at once into selected view. If two volumes ar edragged into a view at the same time they will be both shown, blended ogether.
+
+If a view is displayed only in selected views, you can right-click on the item and select "Show in all views" to quickly show in all views.
+
+If view link is enabled for a slice view thn dragging a volume to any of the views will show the volue in all views in that group.
+
+Display options can be adjusted by right-clicking the eye icon in the display column of the tree. Note that these options ar edifferent from options offered when right-clicking on the "Node" or "Transform" column in the tree.
+
+For volums, display options include reset field of view on show (if enabled, then shwoing a volume makes adjust vies to show the volume in the center, filling the field of view) and reset view orientation on show (if enabled, then showing a volume makes the slice views aligned with the volume axes).
+
+Interacting with views:
+
+View cross-reference: Holding down the Shift key while moving the mouse in any slice or 3D view will cause the crosshair to move to the selected position in all views. By default, when the crosshair is moved in any views, all slice views arre scrolled to the same RAS position indexed by the mouse. This feature is useful when inspecting.
+
+To show/hide the Crosshair position, click crosshair icon.
+
+To customize behavior and appearance of the Crosshair, click the ddown arrow button on the right side of the crosshair icon.
+
+Transform mode is the default interaction mode. By default, Place mode persists for one “place” operation after the Place Mode icon is selected, and then the mode switches back to Transform. Place mode can be made persistent (useful for placing multiple control points) by checking the Persistent checkbox shown rightmost in the Mouse Mode Toolbar.
+
