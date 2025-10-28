@@ -189,4 +189,49 @@ In QT classes, only methods that have Q_INVOKABLE keyword next to them ar eavail
 
 virtual and override specifiers can be ignored as they just indicate that the method can be or is overridden in a child class.
 
-className...
+className (for Qt classes): constructor, shows the arguments that can be passed when an object is cretaed. Qt objects can be instantiated using qt.QSomeObject(). For rexample myObj = qt.QComboBox()
+
+New (for VTK classes): constructor, never needs an argument. VTK objects can be isntantiaed using vtk.vtkSomeObject(). e.g. myObj = vtk.vtkPolyData()
+
+If a variable holds the last referenc eto an object, then it can be deleted by calling del or setting the variable to a new value. For example, del(myObj) or myObj=None.
+
+Static Public Member Functions: can be accessed as slicer.className.memberFunctionName(arguments) for example: slicer.vtkMRMLModelDisplayNode.GetSliceDisplayModeAsString(0)
+
+Properties (for Qt classes): these are values that are accessible as object attrributes in Python and can be read adn written as objectName.propertyName.
+
+E.g. w = slicer.qSlicerMarkupsPlaceWidget()
+w.deleteAllControlPointsOptionVisible
+True
+w.deleteAllControlPointsOptionVisible=False
+w.deleteAllControlPointsOptionVisible
+False
+
+Public slots (for Qt classes): publicly available methods. Note that setSomeProperty methods show up in the documentaton but in Python these methods are nto available and instead property values can be set using someProperty = ...
+
+Signals (for Qt classes): signals that can be connected to Python methods
+
+def someFunction():
+  print("clicked!")
+
+b = qt.QPushButton("MyButton")
+b.connect("clicked()", someFunction)  # someFunction will be called when the button is clicked
+b.show()
+
+Public Types: most commonly used for psecifying enumerated values (indicated by enum type). These values can be accessed as slicer.className.typeName, for example slicer.qSlicerMarkupsPlaceWidget.HidePlaceMultipleOption
+
+Protected Slots, Member Functions, Attributes: for internal use only, not accessible in Python
+
+Mapping commonly used data typs from C++ documentation to Python:
+
+void -> Python: if the return value of a method is this type then it means that no value is returned
+someClass* (object pointer) -> Python: since Python takes care of reference counting, it can simply be intepreted in Python as someClass. The called method can modify the object.
+int, char, short (with optional signed or unsigned prefix) -> Python: int
+float, double -> Python: float
+double[3] -> Python: initialize a variable before the method call as pont = np.zeros(3) (or point = [0.0, 0.0, 0.0]) and use it as an argument in the function
+const char *, std::string, QString, const QStrings -> Python: str
+bool -> Pyton: bool
+
+Slicer
+
+UI
+
