@@ -252,3 +252,30 @@ Volume layer information includes: layer type, Volume name, bolume voxel coordin
 Segmentation information includes layer type, segmentation name, and segment names.
 
 Views
+
+Slicer displays data in various views. The user can choose between a number of predefined layouts, which may contain slice, 3D, chart, and table views. The Layout Toolbar provides a drop-down menu of layouts useful for manu types of studies. When Slicer is exited normally, the selected layout is saved and resotrd next time the application is started.
+
+Application Menu
+
+File: Functions for laoading apreviously saved scene or individual datasets of various types, and for downloading sample datasets from the internet. An option for saving scens and data is also provided here. Add Data allows loading data from files. DOCOM module si recommended to import data from DICOM files and loading of imported DICOM data. Save opens the 'Save Data' window, which offers a variety of options fo savibng all data or selected datasets.
+
+Edit: Contains an option for showing Application Settings, which allows users to customize appearance and behavior of Slicer, such as modules dislayed in the toolbar, application font size, temporar directory location, location of additional Slicer modules to include.
+
+View: Functions fo showing/hiding additional windows and widgets, such as Extensions manager for instlling extensions from Slicer app store, Error Log for checking if the application encountered any potential errors, Python Console for getting a Python console to interact with the loaded data or modules, show/hide toolbars, or switch view layout.
+
+Help: Contains links to documentation, guides, and community sites. Report a Bug provides instructions for bug reporting and convenient access to log messages. There are also links to search for Slier Publications and learn How to Cite Slicer.
+
+Toolbar
+
+Toolbar provides quick access to commonly used functions. Individual toolbar panels can be shown/hidden using Menu: View/Toolbars section.
+
+Module Selection toolbar is used fo rselecting the currently active 'module.' The toolbar provides options fo searching for moldule names (Ctrl+f or click on magnify glass icon) or selecting from a menu. Module history dropdown button shows the list of reently used modules. Arrow buttons can be used for going back to.returning from previously used module.
+
+Favorite modules toolbar contains a list of most frequently used modules. The list can be customized using menu: Edit/Application settings/Modules/Favorite Modules. Drag-and0drop modules from the Modules list ot the Favorite Modules list to add a module.
+
+Status bar
+
+This panel may display application status, such as current operation in progress. Clicking the little X icons displays the Error Log window.
+
+Review Loaded Data
+
