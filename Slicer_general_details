@@ -235,3 +235,20 @@ Slicer
 
 UI
 
+Slicer stores all loaded data in a repository called the "scene" (or Slicer scene or MRML scene). Each data set, such as an image volume, surface model, or point set, is represented in the scene as a node.
+
+Slicer provides a large number of modules, each implementing a specific set of functions for creating or manipulating data in the scene. Modules typically do no tinteract with each other directly, all operating on the data nodes in the scene. Slicer package contains over 100 built-in modules an additional modules cna be installed by using the Extensions Manager.
+
+Module Panel: This panel, located by default on the left side of the application main window, displays all the options and features that the current module ofers to the user. Current module can be selected using the Module Section toolbar.
+
+Data Probe: Data Probe is located at the bottom of the module panel. It displays information about view content at the position of the mous pointer.
+
+This information includes Slice view information displayed when the mouse is over a slice view, Volume layer information (three lines, one for each volume layer), and segmentation information (for each segmentation visible at that position)
+
+Slice view information includes: slice view name, anatomical position, view orientation, and slice spacing
+
+Volume layer information includes: layer type, Volume name, bolume voxel coordinates, and voxel value
+
+Segmentation information includes layer type, segmentation name, and segment names.
+
+Views
