@@ -352,5 +352,22 @@ Multiple modules can be associated with the same MRML node type. The best module
 
 To select a MRML node as the 'active' or 'edited' node in a module the module widget's qSlicerAbstractModuleWidget::setEditedNode() method is called.
 
+MRML Overview
 
+Medical reality Modeling Language is a data model dveloped to represent all data sets that may be used in medical software applications.
+
+MRML software library is an open-source software library implementing MRML data in-memory representation, reading/writing files, visualization, proceessing framework, and GUI widgets for viewing and editing. The library is based on the VTK toolkit, uses ITK for reading/writing some file formats, and has a few additional optional dependencies such as Qt for GUI widgets.
+The library is kept fully independent from 3D Slicer so cn be used in any other medical applications, but 3D Slicer is the only major application that uses it and therefore MRML library source code is maintained in 3D Slicer's source code repository.
+
+MRML file
+
+When MRML data is saved to file, an XML document is created with a .mrml file extension, which contains an index of all data sets and it may refer to other data files for bulk data storage. A variant of this file forma tis the MRML bundle file, which contains the .mrml file and all referenced data files in a single zip file with .mrb extension.
+
+MRML Scene: All data is stored in a MRML scene, which contains a list of MRML nodes. Each MRML node has a unique ID in the scene, has a name, custom attributes (key:value pairs), and a number of additional properties to store information specific to its data type. Node types include image volume, surface mesh, point set, transformation, etc.
+
+Nodes can keep references (links) to each other.
+
+Nodes can invoke events when their contents or internal state change. The most common event is a 'Modified' event, which is involved whener the node content is changed. Other nodes, application logic objects, or user interface widgets may add observers, which are callback functions that are executed whenever the corresponding event is invoked.
+
+MRML nodes:
 
