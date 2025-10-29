@@ -389,4 +389,43 @@ Text (vtkMRMLTextNode): stores text data e.g. configuration files, descriptive t
 
 Table (vtkMRMLTableNode): stores tabular data (multiple scalar or vector arrays), used mainly for showing quantiative results in tabless and plots
 
+Display nodes (vtkMRMLDisplayNode and  it ssubclasses) specify properties for displaying data noes. For example, a model node's color is stored in a display node associated with a model node.
+When a data node is created, a default display node can be added by calling its CreateDefaulDisplayNodes() method. In some cases, 3D Slicer detects if the display and storage node are missing and tries to create default nodes, but developers should not rely on this error-recovery mechanism.
+
+Storage nodes s(vtkMRMLStorageNode and its subclasses) specify how to store a data node in a file. It can store one or more file names, compression options, coordinate system information, etc.. A default storage node may be created for a data node by calling its CreateDefaultStorageNode() method.
+
+View nodes (vtkMRMRLAbstractViewNode and subclasses) specify view layout and apperance of views, such a sbakcground color.
+
+Plot nodes specify how to display table node contents as plots. A plot series node specifies a data series using one or two columns of  atable node. A plot chart node specifies which series to plot and how. A plot view node specifies which plot chart to show in a view and how the user can interact with it.
+
+Subject hierarchy node (vtkMRMLSubjectHierarchyNode) allows organization of data nodes into folders. Subject hierarchy folders may be associated with display ndoes, which can be used override display properties of all children in that folder. It replaces all previous hierarchy management methodds, such as model or annotation hierarchies.
+
+Sequence node stores a list of data nodes to represent time sequences or other multidimensional data sets in the scene. A sequence browser node specifies which one of the internal data nodes should be copied to the scene so that it can be displayed or edited. The node that presents a node of the internal scene is caled a proxy node. When a proxy node is modified in the scne, all changes can be saved into the intenal scene.
+
+----------------------------------------------------------------------------------------------------------------------
+If relevant: https://apidocs.slicer.org/main/classes.html
+----------------------------------------------------------------------------------------------------------------------
+
+MRML node attributes
+MRML nodes can store custom attributes as attribute name and value pairs which allow storing additional application-specific information in nodes without the need to create new node types. To avoid name clashes, custom modules that add attributes to nodes should prefix the attribute name with the module's name and the '.' character.
+
+MRML node attributes can also be used as filter criteria in MRML node selector widgets in the interface.
+
+MRML Node References
+MRML nodes can reference and observe other MRML nodes using the node reference API. A node may reference multiple nodes, each performing a distinct role, and each addressed by a unique string. the ssame role name can be used to refrence multiple nodes.
+
+MRML Events and Observers
+
+Changes in the MRML scene and individual nodes propagate to other observing nodes, GUI, and Logic objcts via VTK events and VTK's command-observer mechanism.
+
+vtkSetMacro() automatically invokes ModifiedEvent. Additional events can be invoked usng the InvokeEvent() method.
+
+Using the AddObserver()/RemoveObserver() methods is tedious and error-prone, so use EventBroker and the vtkObserverManager helper class, macros, and callback methods.
+--Notes:
+MRML observer macros are defind in Libs/MRML/vtkMRMLNode.h
+vtkSetMRMLObjectMacro - registers a MRML node with antoher VTK object (another MRML node, Logic, or GUI). No observers are added.
+vtkSetAndObserveMRMLObjectMacro - regsiters a MRML node and adds an observer for vtkCommand::ModifiedEvent
+vtkSetAndObserveMRMLObjectEventsMacro - regsiters a MRML node and adds an observer for a specified set of events.
+The SetAndObserveMRMLScene() and SetAndObserveMRMLSceneEvents() methods are used in GUI and Logic objects to observe Modified, NewScene, NodeAdded, etc. events.
+The PocessMRMLEvents() method should be implemented in MRML nodes, Logic, and GUI classes in order to process events from the observed nodes.
 
