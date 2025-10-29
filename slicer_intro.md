@@ -198,8 +198,3 @@ Official documentation and examples:
 6. **Transforms** – understand how geometry is managed and linked through nodes.
 7. **Advanced MRML Events** – respond to scene updates and create reactive scripts.
 8. **Development & Extension Writing** – build and distribute scripted modules.
-
----
-
-Would you like me to convert this into a **study outline / course-style PDF** (with indentation, bullet levels, and short quiz checkpoints at each section)?
-That format is very effective if you plan to *review or teach* this material.
