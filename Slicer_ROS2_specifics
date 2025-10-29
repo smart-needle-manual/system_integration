@@ -1,0 +1,47 @@
+The high level ROS functionalities (publisher, subscriber, Tf2 broadcast, Tf2 lookup or parameter client) are all encapsulated as Slicer MRML nodes, i.e. derived from the class vtkMRMLNode and added to the MRML Scene. 
+We ultimately decided to implement the SlicerROS2 module in C++ and rely on the VTK/Slicer build to provide the Python bindings. The SlicerROS2 module is compiled against the Slicer and ROS2 libraries which is a bit challenging since both packages have their own CMake macros and have some Python version requirements. The CMakeLists.txt provided along SlicerROS2 works but you’ll have to ignore some error and warning messages.
+
+One of the main challenges of integrating ROS (Robot Operating System) into 3D Slicer is determining how the two systems should run together — in other words, figuring out the **execution model**. ROS is designed around a network of asynchronous nodes that continuously exchange messages through their own looping process, while Slicer is an interactive, event-driven application built on Qt and VTK, which already runs its own main GUI loop. Because both frameworks expect to “own” the program’s flow of control, developers must decide how ROS will operate within Slicer without freezing the interface or causing thread conflicts. This typically involves defining when and where ROS code executes — for example, running ROS in a background thread, polling it with timers, or connecting it through an external bridge — and ensuring that all updates to the Slicer scene and UI happen safely on the main thread. In short, the “execution model” question is about harmonizing ROS’s real-time message-driven behavior with Slicer’s single-threaded, event-driven architecture.
+
+One of the challenges of integrating ROS in Slicer is to figure out the execution model. ROS relies heavily on callbacks triggered by external messages. This requires to either use a separate thread to “spin” the ROS event loop or periodically call the ROS “spin” method from the application’s main thread. Since we are heavily relying on the MRML scene, using a separate thread is not trivial. Therefore the SlicerROS2 module relies on the main Slicer thread to trigger a periodic call to the ROS spin. We currently use a Qt timer to trigger this periodic call.
+
+The two packages also differ in their design patterns. Slicer (and VTK) strongly relies on base classes and inheritance to allow runtime decisions. Meanwhile, ROS heavily relies on templates and type traits which are handled at compilation time. Most ROS communication mechanisms only support a finite number of data types (e.g. parameters are booleans, integers, floating points, strings or vector of aforementioned types, tf2 uses transforms only…) so this is not a major issue.
+
+The main difficulty lies in supporting many ROS topics and services For our code, we ended up using templates for our internal data structures and add some macros to generate the vtk user classes. These macros use template specialization and add some methods to create a C++ class that can be used within Slicer (including the Python bindings generation).
+
+We added a code generator that can create a VTK object mimicking a ROS message. The code generator will also create the overloaded conversion methods (vtkSlicerToROS2 and vtkROS2ToSlicer) as well as code to call all the macros required to create the publisher or subscriber node. The macro generate_ros2_nodes is used in MRML/CMakeLists.txt and one can add new ROS messages types. New publisher and subscriber nodes will be available after the SlicerROS2 module is recompiled.
+
+generate_ros2_nodes(
+  GENERATED_FILES_PREFIX
+    "SLICER_ROS2_GENERATED"
+  PUBLISHERS
+    "geometry_msgs/msg/PoseStamped"
+    "geometry_msgs/msg/TransformStamped"
+    "geometry_msgs/msg/WrenchStamped"
+    "sensor_msgs/msg/Joy"
+    "sensor_msgs/msg/JointState"
+    "geometry_msgs/msg/PoseArray"
+  SUBSCRIBERS
+    "geometry_msgs/msg/PoseStamped"
+    "geometry_msgs/msg/TransformStamped"
+    "geometry_msgs/msg/WrenchStamped"
+    "sensor_msgs/msg/Joy"
+    "sensor_msgs/msg/JointState"
+    "geometry_msgs/msg/PoseArray"
+  DEPENDENCIES
+    "std_msgs/msg/Header"
+    "builtin_interfaces/msg/Time"
+)
+
+The CMake macro generate_ros2_nodes allows users to quickly add new publishers and subscribers.
+
+**If you are adding messages from a ROS package not already used by SlicerROS2, you might have to edit the main CMakeLists.txt and find_package for the new ROS package.**
+The SlicerROS2 module will automatically convert between the default 3D frames conventions in Slicer and ROS. Slicer (and by extension all VTK objects in Slicer) follow the RAS convention and distances are provided in millimeters. Meanwhile uses the RHS convention and SI units (meters).
+
+
+The SlicerROS2 module always creates a default ROS node (internally a rclcpp::node). This node is both a ROS node and a MRML node, hence the unfortunate name vtkMRMLROS2NodeNode. This node is added to the MRML scene and should be used to add your custom vtkMRMLROS2 nodes (topics, parameter…). It is possible to add more ROS nodes in SlicerROS2 but this feature has not been tested extensively for the first release.
+
+To retrieve the default ROS node:
+rosLogic = slicer.util.getModuleLogic('ROS2')
+rosNode = rosLogic.GetDefaultROS2Node()
+
