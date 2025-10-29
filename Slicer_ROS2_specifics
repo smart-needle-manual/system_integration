@@ -45,3 +45,90 @@ To retrieve the default ROS node:
 rosLogic = slicer.util.getModuleLogic('ROS2')
 rosNode = rosLogic.GetDefaultROS2Node()
 
+Key types:
+Slicer type --> ROS type --> SlicerROS2 "name"
+vtkTransformCollection --> geomtry_msgs::msg::PoseArray --> PoseArray
+vtkPoints --> sensor_msgs::msg::PointCloud --> PointCloud
+
+Example SlicerROS2 node name: vtkMRMLROSPublisherPoseStampedNode
+
+Supported publishers and subscribers:
+rosLogic = slicer.util.getModuleLogic('ROS2')
+rosNode = rosLogic.GetDefaultROS2Node()
+rosNode.RegisteredROS2PublisherNodes()
+rosNode.RegisteredROS2SubscriberNodes()
+
+Publishers
+To create a new publisher, one should use the MRML ROS2 Node method vtkMRMLROS2NodeNode::CreateAndAddPublisherNode.
+
+This method takes two parameters: 
+the class (type) of publisher to be used (full or short name). Publishers are provided for most common data types (from Slicer to ROS messages). The full list can be found in the Slicer ROS logic class (Logic/vtkSlicerROS2Logic.cxx) in the method RegisterNodes.
+The topic name (e.g. std::string)
+
+Publishers ar etriggered by calling the Publish method:
+-------------------------------------------------------------------------------------------------------------------
+rosLogic = slicer.util.getModuleLogic('ROS2')
+rosNode = rosLogic.GetDefaultROS2Node()
+# optional, shows which publishers are available
+rosNode.RegisteredROS2PublisherNodes()
+# example with full class name
+pubString = rosNode.CreateAndAddPublisherNode('vtkMRMLROS2PublisherStringNode', '/my_string')
+# run `ros2 topic echo /my_string` in a terminal to see the output
+pubString.Publish('my first string')
+
+# example with short class name, Pose will be expended to vtkMRMLROS2PublisherPoseNode
+pubMatrix = rosNode.CreateAndAddPublisherNode('Pose', '/my_matrix')
+# run `ros2 topic echo /my_matrix` in a terminal to see the output
+mat = pubMatrix.GetBlankMessage() # returns a vtkMatrix4x4
+mat.SetElement(0, 3, 3.1415) # Modify the matrix so we can see something changing
+pubMatrix.Publish(mat)
+--------------------------------------------------------------------------------------------------------------------
+To remove the publisher node, use  vtkMRMLROS2NodeNode::RemoveAndDeletePublisherNode. This method taks the topic name (std::string)
+
+Subscribers
+To create a new subscribre, uses the MRML ROS2 Node method vtkMRMLROS2NodeNode::CreateAndAddSubscriberNode
+
+This method takes two parameters: 
+the class (type) of subscriber to be used (full or short name). Subscribers are provided for most common data types (from Slicer to ROS messages). The full list can be found in the Slicer ROS logic class (Logic/vtkSlicerROS2Logic.cxx) in the method RegisterNodes.
+The topic name (e.g. std::string)
+
+Subscriber nodes get updated when the ROS2 node is spun. Users can set their own callback to act on newly received messages using an observer on the MRML ROS subscriber node. The ;ast message received can be retrieved using GetLastMessage.
+-----------------------------------------------------------------------------------------------------------------
+rosLogic = slicer.util.getModuleLogic('ROS2')
+rosNode = rosLogic.GetDefaultROS2Node()
+# optional, shows which subscribers are available
+rosNode.RegisteredROS2SubscriberNodes()
+subString = rosNode.CreateAndAddSubscriberNode('String', '/my_string')
+# run `ros2 topic pub /my_string` in a terminal to send a string to Slicer
+m_string = subString.GetLastMessage()
+# alternate, get a string with the full message
+m_string_yaml = subString.GetLastMessageYAML()
+
+
+# since the subscriber is a MRML node,
+# you can also create an observer (callback)
+# to trigger some code when a new message is received.
+# example callback function:
+def myCallback(caller=None, event=None):
+   message = subString.GetLastMessage()
+   print("Last message received by subscriber: {}.".format(message))
+# add the observer with callback
+observerId = subString.AddObserver('ModifiedEvent', myCallback)
+# the last message received will print in the python console
+# in Slicer when data is published to /my_string
+
+
+# another example - updating transforms based on subscribed pose data
+# (ie. for an optical tracker with a ros wrapper)
+subPose = rosNode.CreateAndAddSubscriberNode('Pose', '/StylusToTracker')
+transform = slicer.mrmlScene.AddNewNodeByClass('vtkMRMLLinearTransformNode', 'StylusToTracker')
+# define the callback
+def updateTransforms(caller=None, event=None):
+   pose = subPose.GetLastMessage()
+   transform.SetMatrixTransformToParent(pose)
+   print("Last message received by subscriber: {}.".format(message))
+# add the observer with callback
+observerId = subPose.AddObserver('ModifiedEvent', updateTransforms)
+------------------------------------------------------------------------------------------------------------------
+To remove the subscriber node, use the method vtkMRMLROS2NodeNode::RemoveAndDeleteSubscriberNode. This method taks the topic name (std::string).
+
