@@ -371,3 +371,22 @@ Nodes can invoke events when their contents or internal state change. The most c
 
 MRML nodes:
 
+Basic MRML node types:
+
+Data nodes store basic properties of a data set. Because the same data set can be displayed in different ways (even wihtin the sam eapplication, you may want to show the same data differently in each view), display properties are not storied in the data node. Similarly, the same data set can be stored in various file formats, therefore file storage properties are not stored in a adata node. data ndoes are typically ting wrappers over VTK objects, such as vtkPolyData, vtkImageData, vtkTable. The most important 3D Slicer core data nodes are the following:
+
+Volume (vtkMRMLVolume and its subclasses): Stores a 3D image. Eac voxel of a volume may be a scalar to store images with continuous grayscale value e.g. CT image, label to store discrete labels sch as segmentation result, vector for storing displacment fields or RGB color images, or tensor MRI diffusion images. 2D imae volumes are represented as single-slice 3D volumes. 4D volumes are stored in sequence nods (vtkMRMLSequenceNode).
+
+Model (vtkMRMLModelNode): stores a surface mesh (polygonal elements, points, lines, etc.) or a volumetric mesh (tetrahedral, wedge elements, unstructured grid, etc.).
+
+Segmentation (vtkMRMLSegmentationNode): complex data node that can store an image segmentation aka contouring/labeling. It can store multiple representations internally, e.g. storing both a binary labelmap image and a closed surface mesh.
+
+Markups (vtkMRMLMarkupsNode and subclasses): stores simple geometrial objects, such as point lists (formerly calld fiucial lists), lines, angles, curves, planes for annoation and measuremnts.
+
+Transform (vtkMRMLTransformNode): stores a geometrical transofmration tha can be applied to any transformable nodes. A transformation cna contain any numbe ro flinear or non-linear (warping) transforms chained together. In general, it is recommended to use vtkMRMLTransformNode. Child types (vtkMRMLLinearTransformNode, vtkBSplineTransformNode, vtkMRMLGridTransformNode) are kept for backward compatibility and to allow filtering for specific transofmration types in user interface widgets.
+
+Text (vtkMRMLTextNode): stores text data e.g. configuration files, descriptive text, etc..
+
+Table (vtkMRMLTableNode): stores tabular data (multiple scalar or vector arrays), used mainly for showing quantiative results in tabless and plots
+
+
