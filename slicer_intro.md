@@ -183,14 +183,3 @@ Official documentation and examples:
 * [Scripted Module Examples (GitHub)](https://github.com/Slicer/Slicer/tree/main/Modules/Scripted)
 
 ---
-
-## 🔁 Recommended Learning Order
-
-1. **Slicer Basics & Scene Concepts** – understand MRML Scene, nodes, and views.
-2. **UI Layout and Navigation** – get comfortable with modules, toolbars, and the Data module.
-3. **MRML Node System** – dive into node types, references, attributes, and events.
-4. **Modules Overview** – learn the 3 module types and their relationships with MRML.
-5. **Parameter Nodes & Wrappers** – practice scripting modules that persist state.
-6. **Transforms** – understand how geometry is managed and linked through nodes.
-7. **Advanced MRML Events** – respond to scene updates and create reactive scripts.
-8. **Development & Extension Writing** – build and distribute scripted modules.
