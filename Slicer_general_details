@@ -508,4 +508,12 @@ class ParameterNodeWrapper:
 When constructing a parameterNodeWrapper using a parameter node that already has values set (e.g. when loading a .mrb or a .mrml scene file), those values will be maintained. The default will only come into play if parameter node does not have a value for the parameter.
 Occasionally, it may be useful to use a generator function to create the default value, rather than a fixed value. One possible use of this is to choose a default for a Path after Slicer has finished loading and the appropriate resource directories are known.
 
+Transforms
+vtkMRMLTransformableNode is any node that can be transformed
+vtkMRMLTransformNode cn store any linear or deformable transform or composite of multiple transforms.
+A SERIES OF STEPS HAS TO BE FOLLOWED FOR ITK/VTK WITH NON-LINEAR AFFINE TRANSFORMS
+Events
+When a transform node is observed by a transformable node, vtkMRMLTransformableNode::TransformModifiedEvent is fired on the transformable node at observation time. Anytime a transform is modified, vtkCommand::ModifiedEvent is fired on the transform node and vtkMRMLTransformableNode::TransformModifiedEvent is fired on the transformable node.
+Examples
+Examples for common operations on transform are provided in the script repository.
 
