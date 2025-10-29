@@ -429,3 +429,83 @@ vtkSetAndObserveMRMLObjectEventsMacro - regsiters a MRML node and adds an observ
 The SetAndObserveMRMLScene() and SetAndObserveMRMLSceneEvents() methods are used in GUI and Logic objects to observe Modified, NewScene, NodeAdded, etc. events.
 The PocessMRMLEvents() method should be implemented in MRML nodes, Logic, and GUI classes in order to process events from the observed nodes.
 
+Parameter Nodes
+Parameter nodes are often used in scripted modules to store data such that it can be easily saved to the MRML scene. They are MRML nodes existing in a scene and storing data.
+
+The parameter node concept is implemented in C++ in the vtkMRMLScriptedModuleNode which has GetParameter and SetParameter methods for saving arbitrary string data to the scene. While the base vtkMRMLScriptedModuleNode is great for scene saving, treating all data as strings is not ideal, so a parameter node wrapper was implemented.
+
+Parameter Node Wrapper
+
+The parameter node wrapper allowz wrapping aorund a vtkScriptedModuleNode parameter nod with typed member access. The wrapper will serialize valies into an underlying vtkMRMLScriptedModuleNode, and has a caching Mechanism so multiple reads of  aparameter without a write won't convert from string every time.
+
+import slicer
+from slicer import vtkMRMLModelNode
+from slicer.parameterNodeWrapper import *
+
+@parameterNodeWrapper
+class CustomParameterNode:
+    numIterations:  int
+    inputs:  list[vtkMRMLModelNode]
+    output:  vtkMRMLModelNode
+---------------------------------------------------------------------------------------------------------------------
+In this example, a new class is created called CustomParameterNode that has three members properties, including an int named numIterations, a list of vtkMRMLModelNode named inputs, and a vtkMRMLModelNode named output
+
+The @parameterNodeWrapper decorator will generate a constructor for this class that takes one argument, a vtkMRMLScriptModuleNode parameter node.
+
+Example usage:
+parameterNode = slicer.mrmlScene.AddNodeByClass('vtkMRMLScriptedModuleNode')
+param = CustomParameterNode(parameterNode)
+
+# can set the roperty directly with an appropriate type
+param.numIterations = 500
+param.inputs = [slicer.mrmlScene.AddNewNodeByClass('vtkMRMLModelNode') for _ in range(5)]
+param.output = slicer.mrmlScene.AddNewNodeByClass('vtkMRMLModelNode')
+
+# pythonic list usage
+for inputModel in param.inputs:
+  mesh = inputModel.GetMesh()
+  # ...
+
+for iteration in range(param.numIterations):
+  # run iteration
+
+param.output.SetAndObserveMesh(...)
+
+Supported types
+
+Built-in types
+The @parameterNodeWrapper decoator keys off of the type hints given in the class definition, similar to python's dataclasses.dataclass class.
+
+Various classes are recognized by default, including vtkMRMLNode and subclasses. For using custom types in parameter node wrappers, first see if Parameter Packs will suit your needs. Else, check out Custom Classes page.
+
+MRML Nodes
+MRML nodes from non-core modules are suppoted, but to define a parameterNodeWrapper in the global space of a module, i.e. not inside a function, you cannot use th classes from slicer namespace. This is because they are not added to the slicer nmespace until after the class is created.
+
+Using vtkMRMLMarkupsFiducialNode example:
+
+from slicer.parameterNodeWrapper import *
+from slicer import vtkMRMLMarkupsFiducialNode
+
+@parameterNodeWrapper
+class CustomNodeWrapper
+    markup: vtkMRMLMarkupsFiducialNode
+    markups: list[vtkMRMLMarkupsFiducialNode]
+
+For uses of MRML nodes in Python node, it is preferred to use slicer.<node> rather than from <specific-mrml-package> import <node> as this is more robust if MRML nodes change packages (e.g. from an extension to the core).
+
+Default values can be easily used when creating parameterNodeWrapper and parameterPack by simply assigning a value to the parameter.
+
+from typing import Annotated
+from slicer.parameterNodeWrapper import parameterNodeWrapper
+
+
+@parameterNodeWrapper
+class ParameterNodeWrapper:
+    iterations: int = 50
+    text: str = "abc"
+    tup: tuple[int, bool] = (7, True)
+
+When constructing a parameterNodeWrapper using a parameter node that already has values set (e.g. when loading a .mrb or a .mrml scene file), those values will be maintained. The default will only come into play if parameter node does not have a value for the parameter.
+Occasionally, it may be useful to use a generator function to create the default value, rather than a fixed value. One possible use of this is to choose a default for a Path after Slicer has finished loading and the appropriate resource directories are known.
+
+
