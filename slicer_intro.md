@@ -1,7 +1,3 @@
-Excellent — thanks for confirming. You’ve got a very complete set of notes on Slicer’s core internals and scripting architecture. Below is a **clean, logically ordered rewrite and grouping** designed for Python scripting learners or developers working their way from Slicer basics → advanced MRML and module integration.
-
----
-
 ## 🧭 3D Slicer Core Concepts (Reorganized Overview for Python Scripting)
 
 ### 1. Orientation and the Slicer Scene
