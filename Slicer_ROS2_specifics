@@ -98,11 +98,11 @@ rosLogic = slicer.util.getModuleLogic('ROS2')
 rosNode = rosLogic.GetDefaultROS2Node()
 # optional, shows which subscribers are available
 rosNode.RegisteredROS2SubscriberNodes()
-subString = rosNode.CreateAndAddSubscriberNode('String', '/my_string')
+subShape = rosNode.CreateAndAddSubscriberNode('geometry_msgs/msg/PoseArray, '/needle/state/current_shape')
 # run `ros2 topic pub /my_string` in a terminal to send a string to Slicer
-m_string = subString.GetLastMessage()
+m_shape = subShape.GetLastMessage()
 # alternate, get a string with the full message
-m_string_yaml = subString.GetLastMessageYAML()
+m_shape_yaml = subShape.GetLastMessageYAML()
 
 
 # since the subscriber is a MRML node,
@@ -110,12 +110,12 @@ m_string_yaml = subString.GetLastMessageYAML()
 # to trigger some code when a new message is received.
 # example callback function:
 def myCallback(caller=None, event=None):
-   message = subString.GetLastMessage()
+   message = subShape.GetLastMessage()
    print("Last message received by subscriber: {}.".format(message))
 # add the observer with callback
-observerId = subString.AddObserver('ModifiedEvent', myCallback)
+observerId = subShape.AddObserver('ModifiedEvent', myCallback)
 # the last message received will print in the python console
-# in Slicer when data is published to /my_string
+# in Slicer when data is published to /my_shape
 
 
 # another example - updating transforms based on subscribed pose data
