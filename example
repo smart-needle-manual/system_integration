@@ -1,0 +1,73 @@
+import slicer
+import time
+
+# Get ROS2 logic and default node
+rosLogic = slicer.util.getModuleLogic('ROS2')
+rosNode = rosLogic.GetDefaultROS2Node()
+
+topic_name = '/needle/state/current_shape'
+msg_type = 'PoseArray'
+
+# Create subscriber node
+subShape = rosNode.CreateAndAddSubscriberNode(msg_type, topic_name)
+if subShape is None:
+    raise RuntimeError(f"Failed to create subscriber for {topic_name}")
+
+print(f"✅ Subscribed to {topic_name}")
+
+# Create curve node if needed
+curveNode = slicer.mrmlScene.GetFirstNodeByName("NeedleCurve")
+if curveNode is None:
+    curveNode = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsCurveNode", "NeedleCurve")
+    curveNode.SetCurveTypeToLinear()
+    print("✅ Created vtkMRMLMarkupsCurveNode 'NeedleCurve'")
+
+# Parse YAML manually
+def parse_posearray_yaml(yaml_str):
+    poses = []
+    lines = yaml_str.splitlines()
+    current_pose = None
+    for line in lines:
+        line = line.strip()
+        if line.startswith("position:"):
+            current_pose = {}
+        elif current_pose is not None:
+            if line.startswith("x:"):
+                current_pose['x'] = float(line.split(":")[1])
+            elif line.startswith("y:"):
+                current_pose['y'] = float(line.split(":")[1])
+            elif line.startswith("z:"):
+                current_pose['z'] = float(line.split(":")[1])
+                poses.append(current_pose)
+                current_pose = None
+    return poses
+
+# Throttle setup: 1 update per minute
+last_update_time = 0
+update_interval = 60.0  # seconds → 1 update per minute
+
+# Callback
+def onShapeUpdate(caller=None, event=None):
+    global last_update_time
+    t = time.time()
+    if t - last_update_time < update_interval:
+        return  # skip update if too soon
+    last_update_time = t
+
+    yaml_str = subShape.GetLastMessageYAML()
+    if not yaml_str:
+        return
+    poses = parse_posearray_yaml(yaml_str)
+    if not poses:
+        return
+
+    curveNode.RemoveAllControlPoints()
+    for p in poses:
+        curveNode.AddControlPoint(p['x'], p['y'], p['z'])
+
+    print(f"✅ Curve updated with {len(poses)} points at {time.strftime('%H:%M:%S')}")
+
+# Add observer
+observerId = subShape.AddObserver('ModifiedEvent', onShapeUpdate)
+
+print("\n🚀 Listening for /needle/state/current_shape (1 update per minute) ...")
