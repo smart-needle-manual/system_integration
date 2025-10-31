@@ -24,6 +24,9 @@ def myCallback(caller=None, event=None):
     message = subShape.GetLastMessage()  # vtkTransformCollection
     num = message.GetNumberOfItems()     # Number of vtkTransform objects
 
+    #Clear old fiducials before adding ne ones
+    fid.RemoveAllMarkups()
+
     for i in range(num):
         transform = message.GetItemAsObject(i)  # vtkTransform
         m = vtk.vtkMatrix4x4()                  # Make the matrix
