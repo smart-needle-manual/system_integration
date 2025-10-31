@@ -1,0 +1,23 @@
+rosLogic = slicer.util.getModuleLogic('ROS2')
+rosNode = rosLogic.GetDefaultROS2Node()
+# optional, shows which subscribers are available
+rosNode.RegisteredROS2SubscriberNodes()
+subShape = rosNode.CreateAndAddSubscriberNode('PoseArray', '/needle/state/current_shape')
+# run `ros2 topic pub /my_string` in a terminal to send a string to Slicer
+
+# Callback function for Observer to turn fiducials into curve
+def myCallback(caller=None, event=None):
+   message = subShape.GetLastMessage() #vtkTransformCollection
+   num = message.GetNumberOfItems() #Number of vtkMatrix4x4
+   fid = slicer.mrmrlScene.AddNewNodeByClass('vtkMRMLMarkupsFiducialNode', 'PoseArrayPoints')
+   for i in range(num):
+      transform = poseArray.GetItemAsObject(i) #vtkTransform
+      m = vtk.vtkMatrix4x4() #Make the object
+      transform.GetMatrix(m) #Conversion
+      x, y, z = m.GetElement(0, 3), m.getElement(1,3), m.GetElement(2,3)
+      fid.AddFiducial(x, y, z)
+    markupsLogic = slicer.modules.markups.logic()
+    curveNode = markupsLogic.CreateCurveFromFiducials(fid)
+    curveNode.SetName("NeedleShapeZ")
+# add the observer with callback
+observerId = subShape.AddObserver('ModifiedEvent', myCallback)
