@@ -11,13 +11,18 @@ rosNode.RegisteredROS2SubscriberNodes()
 # Create subscriber for PoseArray
 subShape = rosNode.CreateAndAddSubscriberNode('PoseArray', '/needle/state/current_shape')
 
+# Add new fiducial node
+fid = slicer.mrmlScene.AddNewNodeByClass('vtkMRMLMarkupsFiducialNode', 'PoseArrayPoints')
+
+# Create a curve from the fiducials
+markupsLogic = slicer.modules.markups.logic()
+curveNode = markupsLogic.CreateCurveFromFiducials(fid)
+curveNode.SetName("NeedleShapeZ")
+
 # Callback function: convert PoseArray -> fiducials -> curve
 def myCallback(caller=None, event=None):
     message = subShape.GetLastMessage()  # vtkTransformCollection
     num = message.GetNumberOfItems()     # Number of vtkTransform objects
-
-    # Add new fiducial node
-    fid = slicer.mrmlScene.AddNewNodeByClass('vtkMRMLMarkupsFiducialNode', 'PoseArrayPoints')
 
     for i in range(num):
         transform = message.GetItemAsObject(i)  # vtkTransform
@@ -25,11 +30,6 @@ def myCallback(caller=None, event=None):
         transform.GetMatrix(m)
         x, y, z = m.GetElement(0, 3), m.GetElement(1, 3), m.GetElement(2, 3)
         fid.AddFiducial(x, y, z)
-
-    # Create a curve from the fiducials
-    markupsLogic = slicer.modules.markups.logic()
-    curveNode = markupsLogic.CreateCurveFromFiducials(fid)
-    curveNode.SetName("NeedleShapeZ")
 
 # Add the observer with callback
 observerId = subShape.AddObserver('ModifiedEvent', myCallback)
