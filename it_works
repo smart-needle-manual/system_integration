@@ -1,0 +1,64 @@
+import slicer
+import time
+
+#################### ROS2 Topic Subscription #######################
+rosLogic = slicer.util.getModuleLogic('ROS2')
+rosNode = rosLogic.GetDefaultROS2Node()
+
+topic_name = '/needle/state/current_shape'
+msg_type = 'PoseArray'
+
+# Create subscriber node
+subShape = rosNode.CreateAndAddSubscriberNode(msg_type, topic_name)
+if subShape is None:
+    raise RuntimeError(f"Failed to create subscriber for {topic_name}")
+print(f"Subscribed to {topic_name}")
+
+#################### Fiducial and Curve Nodes #######################
+# Create fiducial node to store individual points
+fid = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsFiducialNode", "NeedleHeader")
+
+# Create curve node
+cur = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsCurveNode", "NeedleShape2")
+
+#################### Throttle Setup #######################
+THROTTLE_INTERVAL = 30  # seconds
+lastUpdateTime = 0
+
+#################### Callback Function #######################
+def updateFiducialsAndCurve(caller=None, event=None):
+    global lastUpdateTime
+    currentTime = time.time()
+
+    # Throttle updates: only allow once every THROTTLE_INTERVAL
+    if currentTime - lastUpdateTime < THROTTLE_INTERVAL:
+        return
+    lastUpdateTime = currentTime
+
+    # Get the latest PoseArray message from ROS
+    poseArray = subShape.GetLastMessage()
+    if poseArray is None:
+        return
+
+    # Extract the individual poses from the message
+    poses = poseArray.GetPoses()
+    if not poses:
+        return
+
+    # Clear existing control points in both fiducial and curve
+    fid.RemoveAllControlPoints()
+    cur.RemoveAllControlPoints()
+
+    # Add each pose to both fiducial and curve nodes
+    for pose in poses:
+        x=pose.GetElement(0,3)/1000
+        y=pose.GetElement(1,3)/1000
+        z=pose.GetElement(2,3)/1000
+        fid.AddControlPoint(x,y,z)
+        cur.AddControlPoint(x,y,z)
+    print("Printed 402 points.")
+
+#################### Add Observer #######################
+observerId = subShape.AddObserver('ModifiedEvent', updateFiducialsAndCurve)
+
+print("Throttled receiver set up and ready.")
