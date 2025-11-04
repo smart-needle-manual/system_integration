@@ -38,7 +38,7 @@ cur.GetDisplayNode().SetPointLabelsVisibility(False)
 #### End Change
 
 #################### Throttle Setup #######################
-THROTTLE_INTERVAL = 1  # seconds
+THROTTLE_INTERVAL = 5  # seconds
 lastUpdateTime = 0
 
 #################### Callback Function #######################
