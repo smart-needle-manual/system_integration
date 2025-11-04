@@ -22,7 +22,7 @@ fid = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsFiducialNode", "NeedleHe
 cur = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsCurveNode", "NeedleShape2")
 
 #################### Throttle Setup #######################
-THROTTLE_INTERVAL = 10  # seconds
+THROTTLE_INTERVAL = 0.5  # seconds
 lastUpdateTime = 0
 
 #################### Callback Function #######################
