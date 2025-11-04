@@ -21,6 +21,18 @@ fid = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsFiducialNode", "NeedleHe
 # Create curve node
 cur = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLMarkupsCurveNode", "NeedleShape2")
 
+#### Change
+# ------------------ HIDE LABELS HERE ------------------
+fidDisplayNode = fid.GetDisplayNode()
+if fidDisplayNode:
+    fidDisplayNode.SetTextVisibility(False)  # Hide fiducial point labels
+
+curDisplayNode = cur.GetDisplayNode()
+if curDisplayNode:
+    curDisplayNode.SetTextScale(0)           # Hide curve labels
+# -------------------------------------------------------
+#### End Change
+
 #################### Throttle Setup #######################
 THROTTLE_INTERVAL = 1  # seconds
 lastUpdateTime = 0
