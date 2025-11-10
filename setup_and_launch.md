@@ -18,9 +18,9 @@
 
 ## Goal
 ### The purpose of the work delineated here is thus to 
-### \t(1) remove the dependence of the system on robotic guidance
-### \t(2) remove the OpenIGTLink bridge currently used for ROS-Slicer communication
-### \t(3) validate the accurcay of the updated workflow. 
+### \t (1) remove the dependence of the system on robotic guidance
+### \t (2) remove the OpenIGTLink bridge currently used for ROS-Slicer communication
+### \t (3) validate the accurcay of the updated workflow. 
 
 Degrees of Freedom in Plan-Insert-Check Cycle
 
