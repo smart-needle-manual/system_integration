@@ -5,7 +5,7 @@
 ### *Supervisor*: Mariana Bernardes, PhD
 ### *Current & Past Contributors*: 
 ### Johns Hopkins University: Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk 
-### Brigham & Women's Hospital: Pedro Moreira, PhD; Nobuhiko Hata, PhD; Lori Foley; Kemal Tuncali, MD; Clare Tempany, MD, PhD
+### Brigham & Women's Hospital: Pedro Moreira, PhD; Nobuhiko Hata, PhD; Kemal Tuncali, MD; Lori Foley, CVT; Clare Tempany, MD, PhD
 ## Goal
 
 
