@@ -22,14 +22,13 @@
 ### &nbsp;&nbsp;&nbsp;&nbsp; (2) remove the OpenIGTLink bridge currently used for ROS-Slicer communication
 ### &nbsp;&nbsp;&nbsp;&nbsp; (3) validate the accurcay of the updated workflow. 
 
-Degrees of Freedom in Plan-Insert-Check Cycle
+#### *The rest of this tutorial follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*
 
-## Install and Source ROS2 - Follow the Links Below if using Ubuntu 22.04
+## Install and Source ROS2
 ### Installation: https://docs.ros.org/en/humble/Installation.html
 ### Sourcing: https://docs.ros.org/en/humble/Tutorials.html
 ## Install and Compile Slicer
 ### https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started
-#### *The rest of this tutorial follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*
 ### &nbsp;&nbsp;&nbsp;&nbsp; 1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; prior to the current date. Pay attention to the recommended hardware configuration and system- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specific installers. Use a stable release. 
 ### &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Slicer:
 ### """
