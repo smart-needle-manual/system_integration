@@ -25,12 +25,12 @@
 Degrees of Freedom in Plan-Insert-Check Cycle
 
 ## Install and Source ROS2 Humble - Follow the Links Below
-#### Installation: https://docs.ros.org/en/humble/Installation.html
-#### Sourcing: https://docs.ros.org/en/humble/Tutorials.html
+### Installation: https://docs.ros.org/en/humble/Installation.html
+### Sourcing: https://docs.ros.org/en/humble/Tutorials.html
 ## Install and Compile Slicer
-#### 1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released prior to the current date. The author uses Ubuntu 22.04 as of 11/10/2025. This link (https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started) includes recommended hardware configurations and system-specific installers. Use a stable release of Slicer, as it will have undergone periodic testing by its developers.
-#### *The rest of this tutorial follows Linux-specific directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*
-#### 2. Install Slicer. On Linux,
+### 1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released prior to the current date. The author uses Ubuntu 22.04 as of 11/10/2025. This link (https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started) includes recommended hardware configurations and system-specific installers. Use a stable release of Slicer, as it will have undergone periodic testing by its developers.
+### *The rest of this tutorial follows Linux-specific directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*
+### 2. Install Slicer. On Linux,
 ### """
 ### 1) Open the tar.gz archive and copy directory to the location of your choice. Installation of additional packages may be necessary depending on the Linux distribution and vresion, as described in subsections of [https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started].
 #### *For Ubuntu 22.04, this would look like:* 
