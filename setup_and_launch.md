@@ -25,7 +25,9 @@
 Degrees of Freedom in Plan-Insert-Check Cycle
 
 ## Setup
-### Make sure to install and source ros2 humble in your workspace by following the instructions outlined here (https://docs.ros.org/en/humble/Installation.html and https://docs.ros.org/en/humble/Tutorials.html) and here (https://docs.ros.org/en/humble/Installation.html and https://docs.ros.org/en/humble/Tutorials.html) 
+### Install and Source ROS2 Humble - Follow the Links Below
+#### Installation: https://docs.ros.org/en/humble/Installation.html
+#### Sourcing: https://docs.ros.org/en/humble/Tutorials.html
 
 
 
