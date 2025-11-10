@@ -31,9 +31,6 @@ Degrees of Freedom in Plan-Insert-Check Cycle
 ### https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started
 #### *The rest of this tutorial follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*
 #### &nbsp;&nbsp;&nbsp;&nbsp; 1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released prior to the current date. Pay &nbsp;&nbsp;&nbsp;&nbsp; attention to the recommended hardware configuration and system-specific installers. Use a stable release. 
-
-The author uses Ubuntu 22.04 as of 11/10/2025. This link () includes recommended hardware configurations and system-specific installers. Use a stable release of Slicer, as it will have undergone periodic testing by its developers.
-
 ### &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Slicer. On Linux,
 ### """
 ### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 1) Open the tar.gz archive and copy directory to the location of your choice. Installation of additional packages may be necessary, as described in [https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started].
