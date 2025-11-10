@@ -30,28 +30,28 @@
 ## Install and Compile Slicer
 ### https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started
 ### &nbsp;&nbsp;&nbsp;&nbsp; 1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; prior to the current date. Pay attention to the recommended hardware configuration and system- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specific installers. Use a stable release. 
-### &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Slicer:
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; """
-### Open the tar.gz archive and copy directory to the location of your choice. Installation of additional &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; packages may be necessary, as below (Qt library).
-#### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6*
-### &nbsp;&nbsp;&nbsp;&nbsp; 3. Compile Slicer:
+### &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Slicer. Open tar.gz and copy to home directory. Install the additional Qt library.
+### &nbsp;&nbsp;&nbsp;&nbsp; *sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6*
+### &nbsp;&nbsp;&nbsp;&nbsp; 3. Compile Slicer. See the code snippet below.
+### &nbsp;&nbsp;&nbsp;&nbsp; source/opt/ros/humble/setup.bash
+### &nbsp;&nbsp;&nbsp;&nbsp; mkdir -p ~/sm_manual/src
+### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/sm_manual/src
+### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git
+### &nbsp;&nbsp;&nbsp;&nbsp; git clone https://github.com/smart-needle-manual/ros2_hyperion_interrogator.git
+### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b update-reupload-20251107_173427 https://github.com/smart-needle-manual/ros2_needle_shape_publisher.git
+### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b updated_dir_and_files_NEEDED https://github.com/smart-needle-manual/system_integration.git
+### &nbsp;&nbsp;&nbsp;&nbsp; cd Slicer-SuperBuild-Debug/SlicerModules
+### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git
+### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/sm_manual/src
+
+### &nbsp;&nbsp;&nbsp;&nbsp; 
+### &nbsp;&nbsp;&nbsp;&nbsp;
+### &nbsp;&nbsp;&nbsp;&nbsp;
+### &nbsp;&nbsp;&nbsp;&nbsp;
 
 Run the Slicer Executable (./Slicer) from your Slicer-build subdirectory. Follow steps in link to verify &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; execution rights if clicking on app icon (looks like settings icon) does not launch Slicer.
 ### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; """
 ################### Launch Directions ###########################################################
-
-# Author: Rajdeep Banerjee, MEng, Research Trainee in Brigham and Women's Hospital Radiology Department, Tokuda Lab, 75 Francis St, Boston, MA, 02115
-
-# Supervisors: Dr. Mariana Bernardes (Direct) and Dr. Junichi Tokuda (PI)
-
-########### Package branches TODO: Make working version main ###########################
-~$ mkdir -p <dir_name>/src
-~$ cd <dir_name>/src
-~/<dir_name>/src$ git clone -b slicer_manual_mod https://github.com/smart-needle-manual/ros2_igtl_bridge.git
-~/<dir_name>/src$ git clone -b ros_param_manual_trigger https://github.com/smart-needle-manual/ros2_needle_shape_publisher.git
-~/<dir_name>/src$ git clone https://github.com/smart-needle-manual/ros2_hyperion_interrogator.git
-~/<dir_name>/src$ git clone https://github.com/smart-needle-manual/3DoFSmartTemplate-ROS.git
-~/<dir_name>/src$ git clone -b slicer_mod_manual https://github.com/smart-needle-manual/trajcontrol_jhu.git
 
 #Turn ON hyperion interrogator black box. Blue light should be emitting from black box, and blue blinking should be coming from right side of PC (face the monitor)
 #DO NOT forget to test Hyperion Interrogator. If this is not working, ensure that optical and computer connections are secure, that ens1f1 is set to Hyperion, and that ens1f1 Hyperion is set to 10.0.0.56 in Settings (see top right of computer screen). The idea is: same network, different IP (n+1 rule).  
