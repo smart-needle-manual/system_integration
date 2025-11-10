@@ -7,30 +7,11 @@
 ### Johns Hopkins University: Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk 
 ### Brigham & Women's Hospital: Pedro Moreira, PhD; Nobuhiko Hata, PhD; Kemal Tuncali, MD; Lori Foley, CVT; Clare Tempany, MD, PhD
 ## Goal
-The current standard of care in high-dose-rate (HDR) brachytherapy uses a catheter conrol by a computer-based remote afterloading system to deliver localized radiation to precisely target and eliminate cancerous tissue in cases such as prostate and gyencologic cancer. This approach necessitates frequent repositioning of the catheter due to lack of real-time feedback and deflections from contact with stif tumors; intraoperative imaging, such as with CT or MRI, is untenable due to challenging clogistics involving patient alignment and clinician transitions. Previous work by membrs of this team (https://ieeexplore.ieee.org/abstract/document/10669207) showed that 
+### The current standard of care in high-dose-rate (HDR) brachytherapy uses a catheter control by a computer-based remote afterloading system to deliver localized radiation to precisely target and eliminate cancerous tissue in cases such as prostate and gyencologic cancer. This approach necessitates frequent repositioning of the catheter due to lack of real-time feedback and deflections from contact with stiff tumors; intraoperative imaging, such as with CT or MRI, is untenable due to the neeed for frequent transitions involving patients and clinial staff. Previous work by membrs of this team [1, 2] showed that an approach leveraging fiber-optic shape-sensing, a robotic guide, and a quantiative image analysis framework can track deviations from intended trajectory and spatial dose distribution. The most recent and current working iteration of this approach uses one-dimensional Cosserat models of inextensible, elastic needle deformation using Lie group algebras to mdeol needle-tissue biomechanical interactions. However, while the approcah achieves sub-millimeter accuracy in deflection optimization, the use of a robotic guide and several nodal components in Slicer-ROS, the open-source visualization framework, reduces computational speed, perhaps without significantly improving prediction accuracy for position of the needle tip and downstream dosimetri calculations. The purpose of the work delineated here is thus to (1) remove the dependence of the system on robotic guidance, (2) remove the OpenIGTLink bridge currently used for ROS-Slicer communication, and (3) validate the accurcay of the updated workflow. 
+1: https://ieeexplore.ieee.org/abstract/document/10669207
+2: https://ieeexplore.ieee.org/abstract/document/10801886
 
-Previous work by this team demonstrated 
-
-
-However, adaptive catheter placement is not practical in the current
-form because it requires iterative implantation and imaging; each iteration involves positioning of the patient for
-imaging and catheter placement and moving of the clinician between the imaging room and the control room. To
-enable adaptive catheter placement in a wide range of clinical settings, we will develop a catheter placement
-manipulator system that combines (1) a state-of-the-art fiber-optic shape-sensing stylet to obtain real-time
-quantitative measurement of the catheter trajectories in the patient, and (2) a teleoperated catheter placement
-manipulator to shorten the turnaround time for catheter placement and evaluation, (3) a visualization framework
-that provides quantitative measures of a catheter’s deviation from its intended trajectory and real-time evaluation
-of the consequences to the achievable radiation dose distribution. We hypothesize that the combination of real-
-time catheter trajectory digitization and quick catheter insertion will allow adaptive catheter placement, where
-the catheter locations are optimized through frequent iteration of the plan-insert-check cycle with real-time
-quantitative dosimetry feedback, leading to optimal radiation dose distribution. We will pursue the following
-specific aims: (Aim 1) Develop a fiber-optic shape-sensing stylet for real-time catheter tracking to achieve real-
-time tracking and prediction of the catheter trajectory for real-time feedback; (Aim 2) Develop a teleoperated
-catheter insertion manipulator for quick catheter placement to achieve a shorter turnaround time for the frequent
-plan-insert-check cycle; (Aim 3) Develop, optimize, and validate the system for teleoperated adaptive catheter
-placement to test the impact of teleoperated adaptive catheter placement for optimal dose distribution.
-
-This letter addresses the targeting challenges in MRI-guided transperineal needle placement for prostate cancer (PCa) diagnosis and treatment, a procedure where accuracy is crucial for effective outcomes. We introduce a parameter-agnostic trajectory correction approach incorporating a data-driven closed-loop strategy by radial displacement and an FBG-based shape sensing to enable autonomous needle steering. In an animal study designed to emulate clinical complexity and assess MRI compatibility through a PCa mock biopsy procedure, our approach demonstrated a significant improvement in targeting accuracy (p < 0.05), with mean target error of only 2.2 ± 1.9 mm on first insertion attempts, without needle reinsertions. To the best of our knowledge, this work represents the first in vivo evaluation of robotic needle steering with FBG-sensor feedback, marking a significant step towards its clinical translation.
+Degrees of Freedom in Plan-Insert-Check Cycle
 
 ## Setup
 
