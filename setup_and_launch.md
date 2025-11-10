@@ -4,8 +4,8 @@
 ### *Author*: Rajdeep Banerjee, MEng, Research Trainee - Tokuda Lab, Department of Radiology @ Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
 ### *Supervisor*: Mariana Bernardes, PhD
 ### *Current & Past Contributors*: 
-Johns Hopkins University: Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk 
-Brigham & Women's Hospital: Pedro Moreira, PhD; Nobuhiko Hata, PhD; Lori Foley; Kemal Tuncali, MD; Clare Tempany, MD, PhD
+### Johns Hopkins University: Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk 
+### Brigham & Women's Hospital: Pedro Moreira, PhD; Nobuhiko Hata, PhD; Lori Foley; Kemal Tuncali, MD; Clare Tempany, MD, PhD
 ## Goal
 
 
