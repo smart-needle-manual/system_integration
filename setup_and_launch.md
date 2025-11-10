@@ -1,9 +1,9 @@
 # Setup and Launch, Shape-Sensing Stylet: 1R01EB036015-01 
 ## Project Personnel
-### PIs: Junichi Tokuda, PhD; Iulian Iordachita, PhD; Robert Cormack, PhD
-### Author: Rajdeep Banerjee, MEng, Research Trainee - Tokuda Lab, Department of Radiology @ Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
-### Supervisor: Mariana Bernardes, PhD
-### Additional Contributors (Code and Experiments at JHU): Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk
+### *Principal Investigators*: Junichi Tokuda, PhD; Iulian Iordachita, PhD; Robert Cormack, PhD
+### *Author*: Rajdeep Banerjee, MEng, Research Trainee - Tokuda Lab, Department of Radiology @ Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
+### *Supervisor*: Mariana Bernardes, PhD
+### *Additional Contributors (Code and Experiments at JHU)*: Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk
 ## Setup
 
 
