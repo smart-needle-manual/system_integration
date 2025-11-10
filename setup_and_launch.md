@@ -1,3 +1,10 @@
+# Setup and Launch, Shape-Sensing Stylet: 1R01EB036015-01 
+### PIs: Junichi Tokuda, PhD; Iulian Iordachita, PhD; Robert Cormack, PhD
+### Author: Rajdeep Banerjee, MEng, Research Trainee - Tokuda Lab, Department of Radiology @ Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
+
+
+
+
 ###### NOTE FOR BELOW: OpenIGT and ros2 humble already set up in obgynbrachy ########
 ###### NOTE: Tokuda lab members using AMIGO Gadgetron, follow Ubuntu directions ALWAYS ######
 ##### Build OpenIGT (needed for now) from https://openigtlink.org/library/build #####
