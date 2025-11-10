@@ -24,7 +24,7 @@
 
 Degrees of Freedom in Plan-Insert-Check Cycle
 
-## Install and Source ROS2 Humble - Follow the Links Below
+## Install and Source ROS2 - Follow the Links Below if using Ubuntu 22.04
 ### Installation: https://docs.ros.org/en/humble/Installation.html
 ### Sourcing: https://docs.ros.org/en/humble/Tutorials.html
 ## Install and Compile Slicer
