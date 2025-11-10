@@ -7,23 +7,12 @@
 ### Johns Hopkins University: Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk 
 ### Brigham & Women's Hospital: Pedro Moreira, PhD; Nobuhiko Hata, PhD; Kemal Tuncali, MD; Lori Foley, CVT; Clare Tempany, MD, PhD
 ## Goal
+The current standard of care in high-dose-rate (HDR) brachytherapy uses a catheter conrol by a computer-based remote afterloading system to deliver localized radiation to precisely target and eliminate cancerous tissue in cases such as prostate and gyencologic cancer. This approach necessitates frequent repositioning of the catheter due to lack of real-time feedback and deflections from contact with stif tumors; intraoperative imaging, such as with CT or MRI, is untenable due to challenging clogistics involving patient alignment and clinician transitions. Previous work by membrs of this team (https://ieeexplore.ieee.org/abstract/document/10669207) showed that 
+
+Previous work by this team demonstrated 
 
 
-
-Gynecologic malignancies accounted for over 114,810 new cancer cases and approximately 35,640
-deaths in 2023 in the United States. Brachytherapy has been used to treat locally advanced cervical and
-endometrial cancers since the early 20th century and is now part of the standard of care. Brachytherapy involves
-the precise placement of short-range radioactive sources near or in direct contact with the tumor through thin
-catheters, enabling high radiation doses in the target volume with rapid fall-off to protect adjacent normal
-structures. Today, high-dose-rate (HDR) brachytherapy is commonly employed along with a computer-controlled
-remote afterloading system, which allows accurate control of radiation dose for each catheter by adjusting the
-“dwell time.” Though computer-controlled afterloading systems are widespread, the quality of brachytherapy is
-still limited by suboptimal catheter placement. Clinicians often struggle to properly deploy the catheters in the
-target volume because of the deviation of the catheters from the intended path during insertion and lack of
-quantitative catheter position feedback or the dosimetric consequences resulting from the current catheter
-locations. Intraoperative imaging, either computed tomography (CT) or magnetic resonance (MR), potentially
-provides such feedback and allows for “adaptive catheter placement,” where the clinician adjusts catheter
-location until optimal dosimetry is achieved. However, adaptive catheter placement is not practical in the current
+However, adaptive catheter placement is not practical in the current
 form because it requires iterative implantation and imaging; each iteration involves positioning of the patient for
 imaging and catheter placement and moving of the clinician between the imaging room and the control room. To
 enable adaptive catheter placement in a wide range of clinical settings, we will develop a catheter placement
