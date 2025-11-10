@@ -22,7 +22,7 @@
 ### &nbsp;&nbsp;&nbsp;&nbsp; (2) remove the OpenIGTLink bridge currently used for ROS-Slicer communication
 ### &nbsp;&nbsp;&nbsp;&nbsp; (3) validate the accurcay of the updated workflow. 
 
-#### *The rest of this tutorial follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*
+#### *NOTE The rest of this tutorial, including ROS2 version and installation directions, follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*
 
 ## Install and Source ROS2
 ### Installation: https://docs.ros.org/en/humble/Installation.html
