@@ -35,8 +35,7 @@ The author uses Ubuntu 22.04 as of 11/10/2025. This link (https://slicer.readthe
 
 ### &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Slicer. On Linux,
 ### """
-### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 1) Open the tar.gz archive and copy directory to the location of your choice. Installation of additional packages may be necessary depending on the Linux distribution and vresion, as described in subsections of [https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started].
-#### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; *For Ubuntu 22.04, this would look like:* 
+### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 1) Open the tar.gz archive and copy directory to the location of your choice. Installation of additional packages may be necessary, as described in [https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started].
 #### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; *sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6*
 ### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 2) Run the Slicer Executable
 ### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 3) Remove the directory to uninstall
