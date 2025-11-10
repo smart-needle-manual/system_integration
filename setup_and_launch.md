@@ -11,14 +11,16 @@
 ### > This approach necessitates frequent repositioning of the catheter due to lack of real-time feedback and deflections from contact with stiff tumors; intraoperative imaging, such as with CT or MRI, is untenable due to the neeed for frequent transitions involving patients and clinial staff. 
 ### > Previous work by membrs of this team [1, 2] showed that an approach leveraging fiber-optic shape-sensing, a robotic guide, and a quantiative image analysis framework can track deviations from intended trajectory and spatial dose distribution. 
 ### > The most recent and current working iteration of this approach uses one-dimensional Cosserat models of inextensible, elastic needle deformation using Lie group algebras to mdeol needle-tissue biomechanical interactions. 
-### > However, while the approcah achieves sub-millimeter accuracy in deflection optimization, the use of a robotic guide and several nodal components in Slicer-ROS, the open-source visualization framework, reduces computational speed, perhaps without significantly improving prediction accuracy for position of the needle tip and downstream dosimetric calculations. 
+### > However, while the approcah achieves sub-millimeter accuracy in deflection optimization, the use of a robotic guide and several nodal components in Slicer-ROS, the open-source visualization framework, reduces computational speed, perhaps without significantly improving prediction accuracy for position of the needle tip and downstream dosimetric calculations.
+
+#### 1: https://ieeexplore.ieee.org/abstract/document/10669207
+#### 2: https://ieeexplore.ieee.org/abstract/document/10801886
+
 ## Goal
 ### The purpose of the work delineated here is thus to 
 ### (1) remove the dependence of the system on robotic guidance
 ### (2) remove the OpenIGTLink bridge currently used for ROS-Slicer communication
 ### (3) validate the accurcay of the updated workflow. 
-#### 1: https://ieeexplore.ieee.org/abstract/document/10669207
-#### 2: https://ieeexplore.ieee.org/abstract/document/10801886
 
 Degrees of Freedom in Plan-Insert-Check Cycle
 
