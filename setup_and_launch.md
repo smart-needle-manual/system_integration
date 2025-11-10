@@ -33,7 +33,7 @@ Degrees of Freedom in Plan-Insert-Check Cycle
 ### &nbsp;&nbsp;&nbsp;&nbsp; 1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; prior to the current date. Pay attention to the recommended hardware configuration and system- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specific installers. Use a stable release. 
 ### &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Slicer:
 ### """
-### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 1) Open the tar.gz archive and copy directory to the location of your choice. Installation of additional &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; packages may be necessary [see above link -- example below for Ubuntu 22.04].
+### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 1) Open the tar.gz archive and copy directory to the location of your choice. Installation of additional &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; packages may be necessary, as below.
 #### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6*
 ### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 2) Run the Slicer Executable
 ### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 3) Remove the directory to uninstall
