@@ -1,5 +1,6 @@
 # Setup and Launch, Shape-Sensing Stylet: 1R01EB036015-01 
 ## Project Personnel
+<h3 style="font-weight: normal;">My Heading</h3>
 ### *Principal Investigators*: Junichi Tokuda, PhD; Iulian Iordachita, PhD; Robert Cormack, PhD
 ### *Author*: Rajdeep Banerjee, MEng, Research Trainee - Tokuda Lab, Department of Radiology @ Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
 ### *Supervisor*: Mariana Bernardes, PhD
