@@ -20,7 +20,7 @@
 2. [FBG-based Shape-Sensing to Enable Lateral Deflection Methods of Autonomous Needle Insertion](https://ieeexplore.ieee.org/abstract/document/10801886)
 
 ### Goal
-><u>Remove</u> the dependence of the system on robotic guidance<br><br>
+>_Remove_ the dependence of the system on robotic guidance<br><br>
 ><u>Remove</u> the OpenIGTLink bridge currently used for ROS-Slicer communication<br><br>
 ><u>Validate</u> the accurcay of the updated workflow. 
 
