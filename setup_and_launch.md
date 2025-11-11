@@ -36,13 +36,30 @@
 ### &nbsp;&nbsp;&nbsp;&nbsp; source/opt/ros/humble/setup.bash
 ### &nbsp;&nbsp;&nbsp;&nbsp; mkdir -p ~/sm_manual/src
 ### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/sm_manual/src
-### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git
+### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git #Contains custom module NeedleShapeReceiver
 ### &nbsp;&nbsp;&nbsp;&nbsp; git clone https://github.com/smart-needle-manual/ros2_hyperion_interrogator.git
 ### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b update-reupload-20251107_173427 https://github.com/smart-needle-manual/ros2_needle_shape_publisher.git
 ### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b updated_dir_and_files_NEEDED https://github.com/smart-needle-manual/system_integration.git
 ### &nbsp;&nbsp;&nbsp;&nbsp; cd Slicer-SuperBuild-Debug/SlicerModules
 ### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git
-### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/sm_manual/src
+### &nbsp;&nbsp;&nbsp;&nbsp; # All Slicer Modules built in C will have an associated CMakeLists.txt and need to be compiled (see below).
+### &nbsp;&nbsp;&nbsp;&nbsp; # We will take the example of SlicerIGSIO, which in our case is the only one that is directly required by another one of our directories.
+### &nbsp;&nbsp;&nbsp;&nbsp; git clone https://github.com/IGSIO/SlicerIGSIO.git
+### &nbsp;&nbsp;&nbsp;&nbsp; mkdir SlicerIGSIO-build
+### &nbsp;&nbsp;&nbsp;&nbsp; cd SlicerIGSIO-build
+### &nbsp;&nbsp;&nbsp;&nbsp; ccmake ../SlicerIGSIO-build
+### &nbsp;&nbsp;&nbsp;&nbsp; #Press C for Configure. The most common missing dependence will be Slicer-build.
+### &nbsp;&nbsp;&nbsp;&nbsp; #Scroll down using arrow keys to Slicer_DIR. Fill in absolute path.
+### &nbsp;&nbsp;&nbsp;&nbsp; #Press enter t confirm. Press C once to reconfigure, and again to allow generation.
+### &nbsp;&nbsp;&nbsp;&nbsp; #Press G for generate.
+### &nbsp;&nbsp;&nbsp;&nbsp; make
+### &nbsp;&nbsp;&nbsp;&nbsp; #Repeat this process for the following directories. The first, SlicerIGT, will require the path to SlicerIGSIO inner-build prior to successful configuration.
+### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/SlicerIGT/SlicerIGT.git #Name: SlicerIGT
+### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/openigtlink/SlicerOpenIGTLink.git #Name: SlicerOpenIGTLink
+### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/maribernardes/ZFrameRegistration-3DSlicer.git #Name: ZFrameRegistration
+### &nbsp;&nbsp;&nbsp;&nbsp; The following, and the custom NeedleShapeReceiver, are python-based = No compilation
+### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/QIICR/SlicerDevelopmentToolbox.git
+### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/maribernardes/CurveMaker-3DSlicer.git
 
 ### &nbsp;&nbsp;&nbsp;&nbsp; 
 ### &nbsp;&nbsp;&nbsp;&nbsp;
