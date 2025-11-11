@@ -57,13 +57,16 @@ Next, navigate to the core SlicerModules folder and clone the core Slicer module
 The names which will be used for <module_name>-build below are next to each cloning command below.
 ```
 cd Slicer-SuperBuild-Debug/SlicerModules
-git clone https://github.com/IGSIO/SlicerIGSIO.git #SlicerIGSIO
-git clone https://github.com/SlicerIGT/SlicerIGT.git #SlicerIGT
-git clone https://github.com/openigtlink/SlicerOpenIGTLink.git #SlicerOpenIGTLink
-git clone https://github.com/maribernardes/ZFrameRegistration-3DSlicer.git #ZFrameRegistration
-git clone https://github.com/QIICR/SlicerDevelopmentToolbox.git #Python module. No compilation needed.
-https://github.com/maribernardes/CurveMaker-3DSlicer.git #Python module. No compilation needed.
-git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git #Python module. No compilation needed.
+git clone https://github.com/IGSIO/SlicerIGSIO.git                                                 #SlicerIGSIO
+git clone https://github.com/SlicerIGT/SlicerIGT.git                                               #SlicerIGT
+git clone https://github.com/openigtlink/SlicerOpenIGTLink.git                                     #SlicerOpenIGTLink
+git clone https://github.com/maribernardes/ZFrameRegistration-3DSlicer.git                         #ZFrameRegistration
+
+#The remainder are .py modules and require no compilation.
+
+git clone https://github.com/QIICR/SlicerDevelopmentToolbox.git                                     #No compilation needed.
+https://github.com/maribernardes/CurveMaker-3DSlicer.git                                            #No compilation needed.
+git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git #No compilation needed.
 ```
 All Slicer Modules built using CMake require compilation. They can be identified by their associated CMakeLists.txt file.
 We will take the example of SlicerIGSIO, which in our case behaves slightly differently from the other modules.<br>
