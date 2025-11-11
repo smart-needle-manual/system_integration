@@ -51,10 +51,31 @@ git clone https://github.com/Slicer/Slicer.git
 3. Prepare development environment.
 ```
 cd Slicer
-./Utilities/SetupForDevelopment.sh
+./Utilities/SetupForDevelopment.sh    #An executable shell script. We will use something similar later for our custome module.
 cd ..
 ```
 4. Install the default (Debug) configuration of Slicer. We will not use the other (Release) version.
+```
+mkdir Slicer-SuperBuild-Debug
+cd Slicer-SuperBuild-Debug
+cmake ../Slicer
+```
+5. Build Slicer
+```
+make -j<N>    #N = # of processore cores for faster parallel building using CPU threads.
+```
+6. Run
+```
+cd Slicer-build
+./Slicer
+```
+8. Test
+```
+ctest -j<N>
+```
+10. Package (new terminal, same inner-build folder: ~/Slicer-SuperBuild-Debug/Slicer-build)
+```
+make package
 ```
 
 
