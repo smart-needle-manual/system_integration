@@ -33,6 +33,14 @@
 ### &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Slicer. Open tar.gz and copy to home directory. Install the additional Qt library.
 ### &nbsp;&nbsp;&nbsp;&nbsp; *sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6*
 ### &nbsp;&nbsp;&nbsp;&nbsp; 3. Compile Slicer. See the code snippet below.
+
+
+
+
+https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html for build instructions with cmake . -DSlicer_USE_SYSTEM_OpenSSL=ON -DCMAKE_BUILD_TYPE=Release or ccmake
+
+
+
 ### &nbsp;&nbsp;&nbsp;&nbsp; source/opt/ros/humble/setup.bash
 ### &nbsp;&nbsp;&nbsp;&nbsp; mkdir -p ~/sm_manual/src
 ### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/sm_manual/src
