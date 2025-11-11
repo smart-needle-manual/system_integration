@@ -1,6 +1,6 @@
 # Setup and Launch, Shape-Sensing Stylet: 1R01EB036015-01
 **Principal Investigators**
->**Junichi Tokuda**, PhD; **Iulian Iordachita**, PhD; **Robert Cormack**, PhD
+>**Junichi Tokuda**, PhD (BWH); **Iulian Iordachita**, PhD (JHU); **Robert Cormack**, PhD (BWH)
 
 **Author**
 >**Rajdeep Banerjee**, MEng - Research Trainee @ Tokuda Lab, Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
