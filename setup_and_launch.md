@@ -14,10 +14,10 @@
 >Brigham & Women's Hospital: **Pedro Moreira**, PhD; **Nobuhiko Hata**, PhD; **Kemal Tuncali**, MD; **Lori Foley**, CVT; **Clare Tempany**, MD, PhD
 
 ## Background
-><p>The standard of care in HDR brachytherapy uses a catheter controlled via remote afterloading to deliver localized radiation to prostate and gynecologic cancers. This approach requires frequent catheter repositioning, lacks real-time feedback, and ill-suited to intraoperative imaging support using CT/MRI due to difficult clinical transitions. Previous work <sup>1, 2</sup> showed that leveraging fiber-optic shape-sensing, a 2-dof robotic guide, and an open-source quantitative image analysis framework can allow tracking of deviations from intended trajectory and spatial dose distribution. There is opportunity for improvement by removing the robot dependence and interemediary communication links, keeping the software lightweight and improving speed of shape visualization. </p>
+><p>The standard of care in HDR brachytherapy uses a catheter controlled via remote afterloading to deliver localized radiation to prostate and gynecologic cancers. This approach requires frequent catheter repositioning, lacks real-time feedback, and is ill-suited to intraoperative imaging support using CT/MRI due to difficult clinical transitions. Previous work <sup>1, 2</sup>&nbsp; showed that leveraging fiber-optic shape-sensing, a 2-dof robotic guide, and an open-source quantitative image analysis framework can allow tracking of deviations from intended trajectory and spatial dose distribution. There is opportunity for improvement by removing the robot dependence and interemediary communication links, keeping the software lightweight and improving speed of shape visualization. </p>
 
-#### 1: https://ieeexplore.ieee.org/abstract/document/10669207
-#### 2: https://ieeexplore.ieee.org/abstract/document/10801886
+<pre>1: https://ieeexplore.ieee.org/abstract/document/10669207</pre>
+<pre>2: https://ieeexplore.ieee.org/abstract/document/10801886</pre>
 
 ## Goal
 ### The purpose of the work delineated here is thus to 
