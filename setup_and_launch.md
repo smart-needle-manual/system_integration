@@ -122,7 +122,7 @@ Navigation:
 3. For all **Python** modules, add the folder <ins>containing</ins> the .py file (SlicerDevelopmentToolbox.py, CurveMaker.py, ShapeCall.py)
 4. Restart
 
-## Directions to Test Needle Communication
+## Testing Needle Communication
 From the terminal:
 ```
 cd /home/user_name/HyperionInerrogator
@@ -131,7 +131,7 @@ python3 plotFBGSpectra 10.0.0.55
 
 You should see a plot coming up with three peaks and four overlapping spikes corresponding to 3 channels and 4 active areas.<br>
 Details on needle paramters are in the ShapeCall module from the custom NeedleShapeReceiver folder
-## Directions to Run Shell Script for Custom Module ShapeCall
+## Running Shell Script for Custom Module ShapeCall
 ```
 bash /home/<user_name>/Slicer-SuperBuild-Debug/SlicerModules/slicer-ros2/run_needle_master.sh
 ```
