@@ -53,7 +53,9 @@ cd Slicer
 ./Utilities/SetupForDevelopment.sh
 cd ..
 ```
-4. 
+4. Install the default (Debug) configuration of Slicer. We will not use the other (Release) version.
+```
+
 
 
 ## Project Setup 
@@ -97,7 +99,7 @@ Use ccmake.
 ```
 ccmake ../SlicerIGSIO-build
 ```
-**Next, in the ccmake GUI:**
+**Next, in the ccmake text-based interface:**
 1. Press C for Configure. The most common missing dependence will be Slicer-build.
 2. Scroll down using arrow keys to Slicer_DIR. Fill in absolute path.
 3. Press enter t confirm. Press C once to reconfigure, and again to allow generation.
