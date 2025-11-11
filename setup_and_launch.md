@@ -52,24 +52,31 @@ git clone https://github.com/smart-needle-manual/ros2_hyperion_interrogator.git
 git clone -b update-reupload-20251107_173427 https://github.com/smart-needle-manual/ros2_needle_shape_publisher.git
 git clone -b updated_dir_and_files_NEEDED https://github.com/smart-needle-manual/system_integration.git
 ```
-Next, navigate to the core SlicerModules folder and clone the core Slicer modules and the custom ShapeCall Module into this folder.
+Next, navigate to the core SlicerModules folder and clone the core Slicer modules and the custom ShapeCall module into this folder.
 ```
 cd Slicer-SuperBuild-Debug/SlicerModules
 git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git
+git clone https://github.com/IGSIO/SlicerIGSIO.git
 git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git #Contains custom module NeedleShapeReceiver
 ```
 All Slicer Modules built using CMake require compilation. They can be identified by their associated CMakeLists.txt file.
-We will take the example of SlicerIGSIO, which in our case is the only one that is directly required by another one of our directories.<br>
-We will continue in our 
+We will take the example of SlicerIGSIO, which in our case behaves slightly differently from the other modules.<br>
+We will continue in our SlicerModules path.  
 ```
-git clone https://github.com/IGSIO/SlicerIGSIO.git
+Make and navigate to the the <module_name>-build directory.
+```
 mkdir SlicerIGSIO-build
 cd SlicerIGSIO-build
+```
+Use ccmake.
+```
 ccmake ../SlicerIGSIO-build
-### &nbsp;&nbsp;&nbsp;&nbsp; #Press C for Configure. The most common missing dependence will be Slicer-build.
-### &nbsp;&nbsp;&nbsp;&nbsp; #Scroll down using arrow keys to Slicer_DIR. Fill in absolute path.
-### &nbsp;&nbsp;&nbsp;&nbsp; #Press enter t confirm. Press C once to reconfigure, and again to allow generation.
-### &nbsp;&nbsp;&nbsp;&nbsp; #Press G for generate.
+```
+In the ccmake GUI:
+1. Press C for Configure. The most common missing dependence will be Slicer-build.
+2. Scroll down using arrow keys to Slicer_DIR. Fill in absolute path.
+3. Press enter t confirm. Press C once to reconfigure, and again to allow generation.
+4. Press G for generate.
 make
 ### &nbsp;&nbsp;&nbsp;&nbsp; #Repeat this process for the following directories. The first, SlicerIGT, will require the path to SlicerIGSIO inner-build prior to successful configuration.
 ### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/SlicerIGT/SlicerIGT.git #Name: SlicerIGT
