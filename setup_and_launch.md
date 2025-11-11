@@ -25,7 +25,7 @@
 3. Validate the accurcay of the updated workflow. 
 
 ## Install and Source ROS2
-#### <p>*NOTE: The rest of this tutorial, including ROS2 version and installation directions, follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*</p>
+#### ><p>*NOTE: The rest of this tutorial, including ROS2 version and installation directions, follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*</p>
 ### Installation: https://docs.ros.org/en/humble/Installation.html
 ### Sourcing: https://docs.ros.org/en/humble/Tutorials.html
 ## Install and Compile Slicer
