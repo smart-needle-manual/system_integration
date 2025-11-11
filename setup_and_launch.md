@@ -19,11 +19,10 @@
 1. [In Vivo Feasibility Study: Evaluating Autonomous Data-Driven Robotic Needle Trajectory Correction in MRI-Guided Transperineal Procedures](https://ieeexplore.ieee.org/abstract/document/10669207)
 2. [FBG-based Shape-Sensing to Enable Lateral Deflection Methods of Autonomous Needle Insertion](https://ieeexplore.ieee.org/abstract/document/10801886)
 
-## Goal
-### The purpose of the work delineated here is thus to 
-### &nbsp;&nbsp;&nbsp;&nbsp; (1) remove the dependence of the system on robotic guidance
-### &nbsp;&nbsp;&nbsp;&nbsp; (2) remove the OpenIGTLink bridge currently used for ROS-Slicer communication
-### &nbsp;&nbsp;&nbsp;&nbsp; (3) validate the accurcay of the updated workflow. 
+#### Goal
+1. Remove the dependence of the system on robotic guidance
+2. Remove the OpenIGTLink bridge currently used for ROS-Slicer communication
+3. Validate the accurcay of the updated workflow. 
 
 #### *NOTE: The rest of this tutorial, including ROS2 version and installation directions, follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*
 
