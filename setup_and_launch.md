@@ -43,7 +43,9 @@ https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux
 
 
 '''
+
 source/opt/ros/humble/setup.bash
+
 '''
 >mkdir -p ~/sm_manual/src<br><br>
 ### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/sm_manual/src
