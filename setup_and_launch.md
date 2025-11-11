@@ -19,7 +19,7 @@
 1. [In Vivo Feasibility Study: Evaluating Autonomous Data-Driven Robotic Needle Trajectory Correction in MRI-Guided Transperineal Procedures](https://ieeexplore.ieee.org/abstract/document/10669207)
 2. [FBG-based Shape-Sensing to Enable Lateral Deflection Methods of Autonomous Needle Insertion](https://ieeexplore.ieee.org/abstract/document/10801886)
 
-#### Goal
+### Goal
 1. Remove the dependence of the system on robotic guidance
 2. Remove the OpenIGTLink bridge currently used for ROS-Slicer communication
 3. Validate the accurcay of the updated workflow. 
