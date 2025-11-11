@@ -16,7 +16,7 @@
 ## Background
 ><p>The standard of care in HDR brachytherapy uses a catheter controlled via remote afterloading to deliver localized radiation to prostate and gynecologic cancers. This approach requires frequent catheter repositioning, lacks real-time feedback, and is ill-suited to intraoperative imaging support using CT/MRI due to difficult clinical transitions. Previous work <sup>1, 2</sup>&nbsp; showed that leveraging fiber-optic shape-sensing, a 2-dof robotic guide, and an open-source quantitative image analysis framework can allow tracking of deviations from intended trajectory and spatial dose distribution. There is opportunity for improvement by removing the robot dependence and interemediary communication links, keeping the software lightweight and improving speed of shape visualization. </p>
 
-<pre>1: https://ieeexplore.ieee.org/abstract/document/10669207</pre>
+<pre>1: ["In Vivo Feasibility Study: Evaluating Autonomous Data-Driven Robotic Needle Trajectory Correction in MRI-Guided Transperineal Procedures"]https://ieeexplore.ieee.org/abstract/document/10669207</pre>
 <pre>2: https://ieeexplore.ieee.org/abstract/document/10801886</pre>
 
 ## Goal
