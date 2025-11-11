@@ -69,11 +69,11 @@ make -j<N>    #N = # of processore cores for faster parallel building using CPU 
 cd Slicer-build
 ./Slicer
 ```
-8. Test
+7. Test
 ```
 ctest -j<N>
 ```
-10. Package (new terminal, same inner-build folder: ~/Slicer-SuperBuild-Debug/Slicer-build)
+8. Package (new terminal, same inner-build folder: ~/Slicer-SuperBuild-Debug/Slicer-build)
 ```
 make package
 ```
