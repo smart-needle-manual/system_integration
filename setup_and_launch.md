@@ -118,8 +118,8 @@ This verifies execution. Follow in-link directions for failure case.
 ## Adding Modules to Slicer
 Navigation:
 1. Edit > Application Settings
-2. For all C++ modules, go to build folder (inner-build if it exists). Both qtScriptedModules and qtLoadableModules should be added.
-3. For PythonModules, add the folder CONTAINING the .py file (SlicerDevelopmentToolbox, CurveMaker, NeedleShapeReceiver)
+2. For all **C++** modules, <ins>go to build folder</ins> (inner-build if it exists). *Both qtScriptedModules and qtLoadableModules should be added.*
+3. For all **Python** modules, add the folder <ins>containing</ins> the .py file (SlicerDevelopmentToolbox.py, CurveMaker.py, ShapeCall.py)
 4. Restart
 
 ## Directions to Test Needle Communication
