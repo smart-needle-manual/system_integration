@@ -61,13 +61,16 @@ git clone https://github.com/IGSIO/SlicerIGSIO.git                              
 git clone https://github.com/SlicerIGT/SlicerIGT.git                                               #SlicerIGT
 git clone https://github.com/openigtlink/SlicerOpenIGTLink.git                                     #SlicerOpenIGTLink
 git clone https://github.com/maribernardes/ZFrameRegistration-3DSlicer.git                         #ZFrameRegistration
-
-#The remainder are .py modules and require no compilation.
-
-git clone https://github.com/QIICR/SlicerDevelopmentToolbox.git                                     #No compilation needed.
-https://github.com/maribernardes/CurveMaker-3DSlicer.git                                            #No compilation needed.
-git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git #No compilation needed.
 ```
+
+The remainder are .py modules and require no compilation.
+
+```
+git clone https://github.com/QIICR/SlicerDevelopmentToolbox.git
+https://github.com/maribernardes/CurveMaker-3DSlicer.git
+git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git
+```
+
 All Slicer Modules built using CMake require compilation. They can be identified by their associated CMakeLists.txt file.
 We will take the example of SlicerIGSIO, which in our case behaves slightly differently from the other modules.<br>
 We will continue in our SlicerModules path.<br><br>
