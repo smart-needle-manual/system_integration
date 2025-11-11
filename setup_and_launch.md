@@ -76,7 +76,8 @@ ccmake ../SlicerIGSIO-build
 2. Scroll down using arrow keys to Slicer_DIR. Fill in absolute path.
 3. Press enter t confirm. Press C once to reconfigure, and again to allow generation.
 4. Press G for generate.
-<br><br>**Make the module in the same directory. <ins>Do not forget this step!</ins>**
+<br>
+**Make the module in the same directory. <ins>Do not forget this step!</ins>**
 ```
 make
 ```
