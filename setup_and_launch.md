@@ -1,11 +1,11 @@
 # Setup and Launch, Shape-Sensing Stylet: 1R01EB036015-01 
 ## Project Personnel
-### *Principal Investigators*: Junichi Tokuda, PhD; Iulian Iordachita, PhD; Robert Cormack, PhD
-### *Author*: Rajdeep Banerjee, MEng, Research Trainee - Tokuda Lab, Department of Radiology @ Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
-### *Supervisor*: Mariana Bernardes, PhD
-### *Current & Past Contributors*: 
-### Johns Hopkins University: Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk 
-### Brigham & Women's Hospital: Pedro Moreira, PhD; Nobuhiko Hata, PhD; Kemal Tuncali, MD; Lori Foley, CVT; Clare Tempany, MD, PhD
+>*Principal Investigators*: Junichi Tokuda, PhD; Iulian Iordachita, PhD; Robert Cormack, PhD
+>*Author*: Rajdeep Banerjee, MEng, Research Trainee - Tokuda Lab, Department of Radiology @ Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
+*Supervisor*: Mariana Bernardes, PhD
+*Current & Past Contributors*: 
+>Johns Hopkins University: Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk 
+>Brigham & Women's Hospital: Pedro Moreira, PhD; Nobuhiko Hata, PhD; Kemal Tuncali, MD; Lori Foley, CVT; Clare Tempany, MD, PhD
 ## Background
 >The current standard of care in high-dose-rate (HDR) brachytherapy uses a catheter control by a computer-based remote afterloading system to deliver localized radiation to precisely target and eliminate cancerous tissue in cases such as prostate and gyencologic cancer. 
 
