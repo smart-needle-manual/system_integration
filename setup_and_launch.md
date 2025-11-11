@@ -142,7 +142,7 @@ You will now navigate to the source of your ros2 workspace, build, and then we w
 ```
 source opt/ros/humble/setup.bash
 cd sm_manual
-colcon build --cmake-args -DSlicer_DIR:PATH=/home/<your_user_name>/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Release
+colcon build --cmake-args -DSlicer_DIR:PATH=/home/<your_user_name>/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Release    # Technically, only colcon build is needed for subsequent builds; I recommend just using the full line each time.
 ````
 
 Now your Slicer-ROS2 workspace is set up. Next, run Slicer
