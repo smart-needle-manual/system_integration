@@ -76,8 +76,11 @@ ccmake ../SlicerIGSIO-build
 2. Scroll down using arrow keys to Slicer_DIR. Fill in absolute path.
 3. Press enter t confirm. Press C once to reconfigure, and again to allow generation.
 4. Press G for generate.
+```
 make
-### &nbsp;&nbsp;&nbsp;&nbsp; #Repeat this process for the following directories. The first, SlicerIGT, will require the path to SlicerIGSIO inner-build prior to successful configuration.
+```
+<ins>Repeat</ins> this process for the following directories.<br>
+*The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration.*
 ### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/SlicerIGT/SlicerIGT.git #Name: SlicerIGT
 ### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/openigtlink/SlicerOpenIGTLink.git #Name: SlicerOpenIGTLink
 ### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/maribernardes/ZFrameRegistration-3DSlicer.git #Name: ZFrameRegistration
