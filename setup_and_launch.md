@@ -52,12 +52,17 @@ git clone https://github.com/smart-needle-manual/ros2_hyperion_interrogator.git
 git clone -b update-reupload-20251107_173427 https://github.com/smart-needle-manual/ros2_needle_shape_publisher.git
 git clone -b updated_dir_and_files_NEEDED https://github.com/smart-needle-manual/system_integration.git
 ```
-Next, navigate to the core SlicerModules folder and clone the core Slicer modules and the custom ShapeCall module into this folder.
+Next, navigate to the core SlicerModules folder and clone the core Slicer modules and the custom ShapeCall module into this folder.<br>
+The names which will be used for <module_name>-build below are next to each cloning command below.
 ```
 cd Slicer-SuperBuild-Debug/SlicerModules
-git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git
-git clone https://github.com/IGSIO/SlicerIGSIO.git
-git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git #Contains custom module NeedleShapeReceiver
+git clone https://github.com/IGSIO/SlicerIGSIO.git #SlicerIGSIO
+git clone https://github.com/SlicerIGT/SlicerIGT.git #SlicerIGT
+git clone https://github.com/openigtlink/SlicerOpenIGTLink.git #SlicerOpenIGTLink
+git clone https://github.com/maribernardes/ZFrameRegistration-3DSlicer.git #ZFrameRegistration
+git clone https://github.com/QIICR/SlicerDevelopmentToolbox.git #Python module. No compilation needed.
+https://github.com/maribernardes/CurveMaker-3DSlicer.git #Python module. No compilation needed.
+git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git #Python module. No compilation needed.
 ```
 All Slicer Modules built using CMake require compilation. They can be identified by their associated CMakeLists.txt file.
 We will take the example of SlicerIGSIO, which in our case behaves slightly differently from the other modules.<br>
@@ -76,18 +81,12 @@ ccmake ../SlicerIGSIO-build
 2. Scroll down using arrow keys to Slicer_DIR. Fill in absolute path.
 3. Press enter t confirm. Press C once to reconfigure, and again to allow generation.
 4. Press G for generate.
-**<p>Make the module in the same directory. <ins>Do not forget this step!</ins></p>**
+<p>Make the module in the same directory. <ins>Do not forget this step!</ins></p>
 ```
 make
 ```
-<ins>Repeat</ins> this process for the following directories.<br>
+<ins>Repeat</ins> this process for the remaining directories.<br>
 *The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration.*
-### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/SlicerIGT/SlicerIGT.git #Name: SlicerIGT
-### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/openigtlink/SlicerOpenIGTLink.git #Name: SlicerOpenIGTLink
-### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/maribernardes/ZFrameRegistration-3DSlicer.git #Name: ZFrameRegistration
-### &nbsp;&nbsp;&nbsp;&nbsp; The following, and the custom NeedleShapeReceiver, are python-based = No compilation
-### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/QIICR/SlicerDevelopmentToolbox.git
-### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/maribernardes/CurveMaker-3DSlicer.git
 ### &nbsp;&nbsp;&nbsp;&nbsp; You will now navigate to the source of your ros2 workspace, build, and then we will add the needed modules in Application Settings
 ### &nbsp;&nbsp;&nbsp;&nbsp; cd sm_manual
 ### &nbsp;&nbsp;&nbsp;&nbsp; colcon build --cmake-args -DSlicer_DIR:PATH=/home/your_user_name_here/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Release
