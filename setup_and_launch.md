@@ -24,13 +24,14 @@
 - <ins>Remove</ins> the OpenIGTLink bridge currently used for ROS-Slicer communication<br><br>
 - <ins>Validate</ins> the accurcay of the updated workflow. 
 
-## Install and Source ROS2
+## ROS2
 >#### <p>*NOTE: The rest of this tutorial, including ROS2 version and installation directions, follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*</p>
 ### Installation: https://docs.ros.org/en/humble/Installation.html
 ### Sourcing: https://docs.ros.org/en/humble/Tutorials.html
 
-## Install and Compile Slicer
+## Slicer
 ### https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started
+### Installation
 ### &nbsp;&nbsp;&nbsp;&nbsp; 1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; prior to the current date. Pay attention to the recommended hardware configuration and system- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specific installers. Use a stable release. 
 ### &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Slicer. Open tar.gz and copy to home directory. Install the additional Qt library.
 ### &nbsp;&nbsp;&nbsp;&nbsp; *sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6*
@@ -41,7 +42,7 @@
 
 https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html for build instructions with cmake . -DSlicer_USE_SYSTEM_OpenSSL=ON -DCMAKE_BUILD_TYPE=Release or ccmake
 
-
+## Project Setup 
 First, source ROS, make the project directory, and clone the Slicer-ROS2 communication module, Hyperion interrogator communication module, needle shape publisher, and shell script into the directory.
 ```
 source/opt/ros/humble/setup.bash
@@ -87,13 +88,26 @@ ccmake ../SlicerIGSIO-build
 make
 ```
 
-<p><ins>Repeat</ins> this process for the remaining directories. The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration.</p>
-### &nbsp;&nbsp;&nbsp;&nbsp; You will now navigate to the source of your ros2 workspace, build, and then we will add the needed modules in Application Settings
-### &nbsp;&nbsp;&nbsp;&nbsp; cd sm_manual
-### &nbsp;&nbsp;&nbsp;&nbsp; colcon build --cmake-args -DSlicer_DIR:PATH=/home/your_user_name_here/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Release
-### &nbsp;&nbsp;&nbsp;&nbsp; Now your Slicer-ROS@ workspace is set up. Next:
-### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/Slicer-SuperBuild-Debug/Slicer-build
-### &nbsp;&nbsp;&nbsp;&nbsp; ./Slicer #Verifies execution. Follow in-link directions for failure case.
+<p><ins>Repeat</ins> this process for the remaining directories. The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration.</p><br>
+
+
+#### Build project & Run Slicer
+You will now navigate to the source of your ros2 workspace, build, and then we will add the needed modules in Application Settings
+
+```
+source opt/ros/humble/setup.bash
+cd sm_manual
+colcon build --cmake-args -DSlicer_DIR:PATH=/home/<your_user_name>/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Release
+````
+
+Now your Slicer-ROS@ workspace is set up. Next, run Slicer
+
+````
+cd ~/Slicer-SuperBuild-Debug/Slicer-build
+./Slicer
+```
+
+This verifies execution. Follow in-link directions for failure case.
 
 ## Adding Modules to Slicer
 ### Edit > Application Settings
