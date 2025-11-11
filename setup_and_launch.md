@@ -71,7 +71,7 @@ Use ccmake.
 ```
 ccmake ../SlicerIGSIO-build
 ```
-In the ccmake GUI:
+**Next, in the ccmake GUI:**
 1. Press C for Configure. The most common missing dependence will be Slicer-build.
 2. Scroll down using arrow keys to Slicer_DIR. Fill in absolute path.
 3. Press enter t confirm. Press C once to reconfigure, and again to allow generation.
