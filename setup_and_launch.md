@@ -100,9 +100,9 @@ cd sm_manual
 colcon build --cmake-args -DSlicer_DIR:PATH=/home/<your_user_name>/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Release
 ````
 
-Now your Slicer-ROS@ workspace is set up. Next, run Slicer
+Now your Slicer-ROS2 workspace is set up. Next, run Slicer
 
-````
+```
 cd ~/Slicer-SuperBuild-Debug/Slicer-build
 ./Slicer
 ```
