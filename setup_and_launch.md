@@ -78,7 +78,7 @@ sudo apt install ros-dev-tools    # Dev tools
 ROS_PYTHON_VERSION=3
 ROS_DISTRO=humble
 >>```
-><p>There are options to set domain ID and restrict communication to local host. We will not use these as straightforward communication on the network is crucial for our distributed application.</p>
+<p>There are options to set domain ID and restrict communication to local host. We will not use these as straightforward communication on the network is crucial for our distributed application.</p>
 
 
 ## Slicer
