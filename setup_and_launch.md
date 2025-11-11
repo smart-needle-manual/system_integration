@@ -40,17 +40,17 @@
 ```
 sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6
 ```
-> Now, run the Slicer executable (white wheel, gray background, like a standard settings icon) from the Slicer-build subdirectory.
->> If this fails, use the following commands in the terminal, in the Slicer-build folder. The first makes the app executable. The second launches the app.
->> ```
->> chmod +x Slicer
->> ./Slicer
->> ```
->> If you get
->> ```
->> error: Failed to obtain launcher executable name !
->> ```
->> move the executable into the "Software Home" folder and double-click the app.
+4. Run the Slicer executable (white wheel, gray background, like a standard settings icon) from the Slicer-build subdirectory.
+> If this fails, use the following commands in the terminal, in the Slicer-build folder. The first makes the app executable. The second launches the app.
+> ```
+> chmod +x Slicer
+> ./Slicer
+> ```
+> If you get
+> ```
+> error: Failed to obtain launcher executable name !
+> ```
+> move the executable into the "Software Home" folder and double-click the app.
 
 
 >1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; prior to the current date. Pay attention to the recommended hardware configuration and system- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specific installers. Use a stable release. 
