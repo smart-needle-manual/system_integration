@@ -42,6 +42,7 @@
 https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html for build instructions with cmake . -DSlicer_USE_SYSTEM_OpenSSL=ON -DCMAKE_BUILD_TYPE=Release or ccmake
 
 
+First, source ROS, make the project directory, and clone the slicer, Hyperion, needle shape publisher, and shell script modules.
 ```
 source/opt/ros/humble/setup.bash
 mkdir -p ~/sm_manual/src
