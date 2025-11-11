@@ -58,7 +58,7 @@ cd ..
 ```
 mkdir Slicer-SuperBuild-Debug
 cd Slicer-SuperBuild-Debug
-cmake ../Slicer
+cmake -DSlicer_USE_SYSTEM_OpenSSL=ON -DCMAKE_BUILD_TYPE:STRING=Debug ../Slicer    # "-DSlicer...Debug" uses system SSL to allow compilation of Slicer-ROS2 modules downstream
 ```
 5. Build Slicer
 ```
