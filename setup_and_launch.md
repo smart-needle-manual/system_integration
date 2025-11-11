@@ -42,7 +42,7 @@
 https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html for build instructions with cmake . -DSlicer_USE_SYSTEM_OpenSSL=ON -DCMAKE_BUILD_TYPE=Release or ccmake
 
 
-First, source ROS, make the project directory, and clone the slicer, Hyperion, needle shape publisher, and shell script modules.
+First, source ROS, make the project directory, and clone the Hyperion interrogator, needle shape publisher, and shell script into the directory.
 ```
 source/opt/ros/humble/setup.bash
 mkdir -p ~/sm_manual/src
@@ -52,8 +52,12 @@ git clone https://github.com/smart-needle-manual/ros2_hyperion_interrogator.git
 git clone -b update-reupload-20251107_173427 https://github.com/smart-needle-manual/ros2_needle_shape_publisher.git
 git clone -b updated_dir_and_files_NEEDED https://github.com/smart-needle-manual/system_integration.git
 ```
+Next, navigate to the core SlicerModules folder and clone the core Slicer modules and the custom ShapeCall Module into this folder.
+```
 cd Slicer-SuperBuild-Debug/SlicerModules
 git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git
+git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git #Contains custom module NeedleShapeReceiver
+```
 ### &nbsp;&nbsp;&nbsp;&nbsp; # All Slicer Modules built in C will have an associated CMakeLists.txt and need to be compiled (see below).
 ### &nbsp;&nbsp;&nbsp;&nbsp; # We will take the example of SlicerIGSIO, which in our case is the only one that is directly required by another one of our directories.
 git clone https://github.com/IGSIO/SlicerIGSIO.git
