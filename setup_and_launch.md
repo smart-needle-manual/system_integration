@@ -25,15 +25,38 @@
 - <ins>Validate</ins> the accurcay of the updated workflow. 
 
 ## ROS2
->#### <p>*NOTE: The rest of this tutorial, including ROS2 version and installation directions, follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add directions for other systems to this document, but please include your contact information or links to relevant sources--and sections--for follow-up.*</p>
-### Installation: https://docs.ros.org/en/humble/Installation.html
-### Sourcing: https://docs.ros.org/en/humble/Tutorials.html
+
+>#### <p>*NOTE: The rest of this tutorial, including ROS2 version and installation, follows Linux-specific (Ubuntu 22.04) directions, but the general rules are applicable to other systems. Others are welcome to add instructions for other systems.*</p>
+
+[Installation](https://docs.ros.org/en/humble/Installation.html)
+[Sourcing](https://docs.ros.org/en/humble/Tutorials.html)
 
 ## Slicer
-### https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started
-### Installation
-### &nbsp;&nbsp;&nbsp;&nbsp; 1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; prior to the current date. Pay attention to the recommended hardware configuration and system- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specific installers. Use a stable release. 
-### &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Slicer. Open tar.gz and copy to home directory. Install the additional Qt library.
+### Installing Slicer
+[Installation](https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started)
+1. [Install Slicer Stable Release (e.g. Linux)](https://download.slicer.org/)
+2. Open tar.gz archive and copy directory to local directory.
+3. Install necessary packages
+```
+sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6
+```
+> Now, run the Slicer executable (white wheel, gray background, like a standard settings icon) from the Slicer-build subdirectory.
+>> If this fails, use the following commands in the terminal, in the Slicer-build folder. The first makes the app executable. The second launches the app.
+>> ```
+>> chmod +x Slicer
+>> ./Slicer
+>> ```
+>> If you get
+>> ```
+>> error: Failed to obtain launcher executable name !
+>> ```
+>> move the executable into the "Software Home" folder and double-click the app.
+
+
+>1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; prior to the current date. Pay attention to the recommended hardware configuration and system- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specific installers. Use a stable release. 
+>2. Install Slicer. Open tar.gz and copy to home directory. Install the additional Qt library.
+
+
 ### &nbsp;&nbsp;&nbsp;&nbsp; *sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6*
 ### &nbsp;&nbsp;&nbsp;&nbsp; 3. Compile Slicer. See the code snippet below.
 
