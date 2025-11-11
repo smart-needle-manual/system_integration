@@ -123,13 +123,22 @@ Navigation:
 4. Restart
 
 ## Directions to Test Needle Communication
-### &nbsp;&nbsp;&nbsp;&nbsp; cd /home/user_name/HyperionInerrogator
-### &nbsp;&nbsp;&nbsp;&nbsp; python3 plotFBGSpectra 10.0.0.55 #You should see a plot coming up with three peaks and four overlapping spikes -- 3CH, 4AA
-### ### &nbsp;&nbsp;&nbsp;&nbsp; Details on needle paramters are in the ShapeCall module from the custom NeedleShapeReceiver folder
+From the terminal:
+```
+cd /home/user_name/HyperionInerrogator
+python3 plotFBGSpectra 10.0.0.55
+```
+
+You should see a plot coming up with three peaks and four overlapping spikes corresponding to 3 channels and 4 active areas.<br>
+Details on needle paramters are in the ShapeCall module from the custom NeedleShapeReceiver folder
 ## Directions to Run Shell Script for Custom Module ShapeCall
-## bash /home/user_name/Slicer-SuperBuild-Debug/SlicerModules/slicer-ros2/run_needle_master.sh
-## Turn on Hyperion Interrogator -- blue light should flash. Make sure ens1f1 is connected to Hyperion, with ip 10.0.0.56 (talks to Hyperion -- 10.0.0.55) -- Same network, different ports
-## In Slicer, find and click on ShapeCall in NeedleShapeVisualization from drop-down menu
+```
+bash /home/<user_name>/Slicer-SuperBuild-Debug/SlicerModules/slicer-ros2/run_needle_master.sh
+```
+1. Turn on Hyperion Interrogator. A blue light should flash. 
+2. Make sure ens1f1 is connected to Hyperion, with ip 10.0.0.56.
+3. The computer talks to Hyperion (10.0.0.55). Same network, different ports.
+4. In Slicer, find and click on ShapeCall in NeedleShapeVisualization from drop-down menu.
 
 Run the Slicer Executable (./Slicer) from your Slicer-build subdirectory. Follow steps in link to verify &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; execution rights if clicking on app icon (looks like settings icon) does not launch Slicer.
 ### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; """
