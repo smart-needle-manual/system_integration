@@ -14,6 +14,9 @@
 >Brigham & Women's Hospital: **Pedro Moreira**, PhD; **Nobuhiko Hata**, PhD; **Kemal Tuncali**, MD; **Lori Foley**, CVT; **Clare Tempany**, MD, PhD
 
 ## Background
+<pre>  The standard of care in HDR brachytherapy uses a catheter controlled via remote afterloading to deliver localized radiation to prostate and gynecologic cancers. This approach requires frequent catheter repositioning, lacks real-time feedback, and ill-suited to intraoperative imaging support using CT/MRI due to difficult clinical transitions. Previous work <sup>1, 2</sup> showed that leveraging fiber-optic shape-sensing, a 2-dof robotic guide, and an open-source quantitative image analysis framework can allow tracking of deviations from intended trajectory and spatial dose distribution. There is opportunity for improvement by removing the robot dependence and interemediary communication links, keeping the software lightweight and improving speed of shape visualization. </pre>
+
+
 >The current standard of care in high-dose-rate (HDR) brachytherapy uses a catheter control by a computer-based remote afterloading system to deliver localized radiation to precisely target and eliminate cancerous tissue in cases such as prostate and gyencologic cancer. 
 
 >This approach necessitates frequent repositioning of the catheter due to lack of real-time feedback and deflections from contact with stiff tumors; intraoperative imaging, such as with CT or MRI, is untenable due to the neeed for frequent transitions involving patients and clinial staff. 
