@@ -87,8 +87,7 @@ ccmake ../SlicerIGSIO-build
 make
 ```
 
-<ins>Repeat</ins> this process for the remaining directories.<br>
-*The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration.*
+<p><ins>Repeat</ins> this process for the remaining directories. *The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration.*</p>
 ### &nbsp;&nbsp;&nbsp;&nbsp; You will now navigate to the source of your ros2 workspace, build, and then we will add the needed modules in Application Settings
 ### &nbsp;&nbsp;&nbsp;&nbsp; cd sm_manual
 ### &nbsp;&nbsp;&nbsp;&nbsp; colcon build --cmake-args -DSlicer_DIR:PATH=/home/your_user_name_here/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Release
