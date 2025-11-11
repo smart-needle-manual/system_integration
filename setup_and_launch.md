@@ -42,8 +42,9 @@
 https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html for build instructions with cmake . -DSlicer_USE_SYSTEM_OpenSSL=ON -DCMAKE_BUILD_TYPE=Release or ccmake
 
 
-
->source/opt/ros/humble/setup.bash<br><br>
+'''
+source/opt/ros/humble/setup.bash
+'''
 >mkdir -p ~/sm_manual/src<br><br>
 ### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/sm_manual/src
 ### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git #Contains custom module NeedleShapeReceiver
