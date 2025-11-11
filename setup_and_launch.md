@@ -32,36 +32,29 @@
 [Sourcing](https://docs.ros.org/en/humble/Tutorials.html)
 
 ## Slicer
-### Installing Slicer
-Instructions adapted from [Getting Started](https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started)
-1. [Install Slicer Stable Release (e.g. Linux)](https://download.slicer.org/)
-2. Open tar.gz archive and copy directory to local directory.
-3. Install necessary packages
-```
-sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6
-```
-4. Run the Slicer executable (white wheel, gray background, like a standard settings icon) from the Slicer-build subdirectory.
-> If this fails, use the following commands in the terminal, in the Slicer-build folder. The first makes the app executable. The second launches the app.
-> ```
-> chmod +x Slicer
-> ./Slicer
-> ```
-> If you get
-> ```
-> error: Failed to obtain launcher executable name !
-> ```
-> move the executable into the "Software Home" folder and double-click the app.
-
 ### Building Slicer
-Instructions adapted from [GNU/Linux Systems](https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html)
-The following command installs git, GCC, CMake, Qt, and libXt.<br>
-These tools and libraries allow fetching of Slicer source code as well as generation and building of the project.
+Instructions adapted from [Developer Guide - GNU/Linux Systems](https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html) <br>
+
+1. The following command installs git, GCC, CMake, Qt, and libXt.<br>
+>These tools and libraries allow fetching of Slicer source code as well as generation and building of the project.
 ```
 sudo apt update && sudo apt install git build-essential \
   cmake cmake-curses-gui cmake-qt-gui \
   libqt5x11extras5-dev qtmultimedia5-dev libqt5svg5-dev qtwebengine5-dev libqt5xmlpatterns5-dev qttools5-dev qtbase5-private-dev \
   qtbase5-dev qt5-qmake
 ```
+2. Clone Slicer source code repository. This will create the *Slicer* source directory.
+```
+git clone https://github.com/Slicer/Slicer.git
+```
+3. Prepare development environment.
+```
+cd Slicer
+./Utilities/SetupForDevelopment.sh
+cd ..
+```
+4. 
+
 
 ## Project Setup 
 First, source ROS, make the project directory, and clone the Slicer-ROS2 communication module, Hyperion interrogator communication module, needle shape publisher, and shell script into the directory.
