@@ -61,8 +61,7 @@ git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-man
 ```
 All Slicer Modules built using CMake require compilation. They can be identified by their associated CMakeLists.txt file.
 We will take the example of SlicerIGSIO, which in our case behaves slightly differently from the other modules.<br>
-We will continue in our SlicerModules path.  
-```
+We will continue in our SlicerModules path.<br><br>
 Make and navigate to the the <module_name>-build directory.
 ```
 mkdir SlicerIGSIO-build
