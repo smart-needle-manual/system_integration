@@ -60,7 +60,13 @@ mkdir Slicer-SuperBuild-Debug
 cd Slicer-SuperBuild-Debug
 cmake -DSlicer_USE_SYSTEM_OpenSSL=ON -DCMAKE_BUILD_TYPE:STRING=Debug ../Slicer    # "-DSlicer...Debug" uses system OpenSSL to allow compilation of Slicer-ROS2 modules downstream
 ```
->The alternative to using OpenSSL from the command line is to use ccmake and change the config there.
+>The alternative to using OpenSSL from the command line is to use ccmake in the Slicer build directory and change the config there.<br>
+>This would look like:
+>```
+>cd ~/Slicer-SuperBuild-Debug/Slicer-build
+>ccmake ../Slicer
+>Follow the directions in the ccmake text-based interface. We do something similar later on in this tutorial.
+>Do not forget to 'make'! We do so below.
 5. Build Slicer
 ```
 make -j<N>    #N = # of processore cores for faster parallel building using CPU threads.
