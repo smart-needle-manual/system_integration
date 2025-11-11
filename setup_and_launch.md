@@ -3,7 +3,7 @@
 >**Junichi Tokuda**, PhD; **Iulian Iordachita**, PhD; **Robert Cormack**, PhD
 
 **Author**
->**Rajdeep Banerjee**, MEng, Research Trainee - Tokuda Lab, Department of Radiology @ Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
+>**Rajdeep Banerjee**, MEng - Research Trainee @ Tokuda Lab, Brigham and Women's Hospital, 75 Francis St, Boston, MA, 02115
 
 **Supervisor**
 >**Mariana Bernardes**, PhD
