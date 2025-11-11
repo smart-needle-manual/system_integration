@@ -82,9 +82,11 @@ ccmake ../SlicerIGSIO-build
 3. Press enter t confirm. Press C once to reconfigure, and again to allow generation.
 4. Press G for generate.
 <p>Make the module in the same directory. <ins>Do not forget this step!</ins></p>
+
 ```
 make
 ```
+
 <ins>Repeat</ins> this process for the remaining directories.<br>
 *The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration.*
 ### &nbsp;&nbsp;&nbsp;&nbsp; You will now navigate to the source of your ros2 workspace, build, and then we will add the needed modules in Application Settings
