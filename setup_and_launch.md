@@ -7,11 +7,11 @@
 ### Johns Hopkins University: Dimitri Lezcano, PhD; Jin Seob Kim, PhD; Jacynthe Francoeur, MS; Yinsong Ma, MS; Kayleigh Huk 
 ### Brigham & Women's Hospital: Pedro Moreira, PhD; Nobuhiko Hata, PhD; Kemal Tuncali, MD; Lori Foley, CVT; Clare Tempany, MD, PhD
 ## Background
-### >The current standard of care in high-dose-rate (HDR) brachytherapy uses a catheter control by a computer-based remote afterloading system to deliver localized radiation to precisely target and eliminate cancerous tissue in cases such as prostate and gyencologic cancer. 
-### >This approach necessitates frequent repositioning of the catheter due to lack of real-time feedback and deflections from contact with stiff tumors; intraoperative imaging, such as with CT or MRI, is untenable due to the neeed for frequent transitions involving patients and clinial staff. 
-### >Previous work by membrs of this team [1, 2] showed that an approach leveraging fiber-optic shape-sensing, a robotic guide, and a quantiative image analysis framework can track deviations from intended trajectory and spatial dose distribution. 
-### >The most recent and current working iteration of this approach uses one-dimensional Cosserat models of inextensible, elastic needle deformation using Lie group algebras to mdeol needle-tissue biomechanical interactions. 
-### >However, while the approcah achieves sub-millimeter accuracy in deflection optimization, the use of a robotic guide and several nodal components in Slicer-ROS, the open-source visualization framework, allows only tranlsation and reduces computational speed, hampering flexible operation and perhaps negligibly improving prediction accuracy for position of the needle tip and downstream dosimetric calculations.
+>The current standard of care in high-dose-rate (HDR) brachytherapy uses a catheter control by a computer-based remote afterloading system to deliver localized radiation to precisely target and eliminate cancerous tissue in cases such as prostate and gyencologic cancer. 
+>This approach necessitates frequent repositioning of the catheter due to lack of real-time feedback and deflections from contact with stiff tumors; intraoperative imaging, such as with CT or MRI, is untenable due to the neeed for frequent transitions involving patients and clinial staff. 
+>Previous work by membrs of this team [1, 2] showed that an approach leveraging fiber-optic shape-sensing, a robotic guide, and a quantiative image analysis framework can track deviations from intended trajectory and spatial dose distribution. 
+>The most recent and current working iteration of this approach uses one-dimensional Cosserat models of inextensible, elastic needle deformation using Lie group algebras to mdeol needle-tissue biomechanical interactions. 
+>However, while the approcah achieves sub-millimeter accuracy in deflection optimization, the use of a robotic guide and several nodal components in Slicer-ROS, the open-source visualization framework, allows only tranlsation and reduces computational speed, hampering flexible operation and perhaps negligibly improving prediction accuracy for position of the needle tip and downstream dosimetric calculations.
 
 #### 1: https://ieeexplore.ieee.org/abstract/document/10669207
 #### 2: https://ieeexplore.ieee.org/abstract/document/10801886
