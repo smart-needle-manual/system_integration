@@ -65,6 +65,7 @@ cmake -DSlicer_USE_SYSTEM_OpenSSL=ON -DCMAKE_BUILD_TYPE:STRING=Debug ../Slicer  
 >```
 >cd ~/Slicer-SuperBuild-Debug/Slicer-build
 >ccmake ../Slicer
+>```
 >Follow the directions in the ccmake text-based interface. We do something similar later on in this tutorial.
 >Do not forget to 'make'! We do so below.
 5. Build Slicer
