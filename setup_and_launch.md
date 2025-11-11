@@ -106,7 +106,7 @@ The remainder are .py modules and require no compilation.
 
 ```
 git clone https://github.com/QIICR/SlicerDevelopmentToolbox.git
-https://github.com/maribernardes/CurveMaker-3DSlicer.git
+git clone https://github.com/maribernardes/CurveMaker-3DSlicer.git
 git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git
 ```
 
