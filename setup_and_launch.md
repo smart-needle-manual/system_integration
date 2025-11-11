@@ -43,8 +43,8 @@ https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux
 
 
 
-### &nbsp;&nbsp;&nbsp;&nbsp; source/opt/ros/humble/setup.bash
-### &nbsp;&nbsp;&nbsp;&nbsp; mkdir -p ~/sm_manual/src
+>source/opt/ros/humble/setup.bash<br><br>
+>mkdir -p ~/sm_manual/src<br><br>
 ### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/sm_manual/src
 ### &nbsp;&nbsp;&nbsp;&nbsp; git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git #Contains custom module NeedleShapeReceiver
 ### &nbsp;&nbsp;&nbsp;&nbsp; git clone https://github.com/smart-needle-manual/ros2_hyperion_interrogator.git
