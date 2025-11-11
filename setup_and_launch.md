@@ -33,7 +33,7 @@
 
 ## Slicer
 ### Installing Slicer
-[Installation](https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started)
+Instructions adapted from [Getting Started](https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#getting-started)
 1. [Install Slicer Stable Release (e.g. Linux)](https://download.slicer.org/)
 2. Open tar.gz archive and copy directory to local directory.
 3. Install necessary packages
@@ -52,18 +52,16 @@ sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5
 > ```
 > move the executable into the "Software Home" folder and double-click the app.
 
-
->1. Review System Requirements. Slicer will work with any Linux, Windows, or Mac system released &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; prior to the current date. Pay attention to the recommended hardware configuration and system- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specific installers. Use a stable release. 
->2. Install Slicer. Open tar.gz and copy to home directory. Install the additional Qt library.
-
-
-### &nbsp;&nbsp;&nbsp;&nbsp; *sudo apt-get install libglu1-mesa libpulse-mainloop-glib0 libnss3 libasound2 qt5dxcb-plugin libsm6*
-### &nbsp;&nbsp;&nbsp;&nbsp; 3. Compile Slicer. See the code snippet below.
-
-
-
-
-https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html for build instructions with cmake . -DSlicer_USE_SYSTEM_OpenSSL=ON -DCMAKE_BUILD_TYPE=Release or ccmake
+### Building Slicer
+Instructions adapted from [GNU/Linux Systems](https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html)
+The following command installs git, GCC, CMake, Qt, and libXt.<br>
+These tools and libraries allow fetching of Slicer source code as well as generation and building of the project.
+```
+sudo apt update && sudo apt install git build-essential \
+  cmake cmake-curses-gui cmake-qt-gui \
+  libqt5x11extras5-dev qtmultimedia5-dev libqt5svg5-dev qtwebengine5-dev libqt5xmlpatterns5-dev qttools5-dev qtbase5-private-dev \
+  qtbase5-dev qt5-qmake
+```
 
 ## Project Setup 
 First, source ROS, make the project directory, and clone the Slicer-ROS2 communication module, Hyperion interrogator communication module, needle shape publisher, and shell script into the directory.
