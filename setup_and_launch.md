@@ -60,11 +60,27 @@
 ### &nbsp;&nbsp;&nbsp;&nbsp; The following, and the custom NeedleShapeReceiver, are python-based = No compilation
 ### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/QIICR/SlicerDevelopmentToolbox.git
 ### &nbsp;&nbsp;&nbsp;&nbsp; https://github.com/maribernardes/CurveMaker-3DSlicer.git
+### &nbsp;&nbsp;&nbsp;&nbsp; You will now navigate to the source of your ros2 workspace, build, and then we will add the needed modules in Application Settings
+### &nbsp;&nbsp;&nbsp;&nbsp; cd sm_manual
+### &nbsp;&nbsp;&nbsp;&nbsp; colcon build --cmake-args -DSlicer_DIR:PATH=/home/your_user_name_here/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Release
+### &nbsp;&nbsp;&nbsp;&nbsp; Now your Slicer-ROS@ workspace is set up. Next:
+### &nbsp;&nbsp;&nbsp;&nbsp; cd ~/Slicer-SuperBuild-Debug/Slicer-build
+### &nbsp;&nbsp;&nbsp;&nbsp; ./Slicer #Verifies execution. Follow in-link directions for failure case.
 
-### &nbsp;&nbsp;&nbsp;&nbsp; 
-### &nbsp;&nbsp;&nbsp;&nbsp;
-### &nbsp;&nbsp;&nbsp;&nbsp;
-### &nbsp;&nbsp;&nbsp;&nbsp;
+## Adding Modules to Slicer
+### Edit > Application Settings
+### For all C++ modules, go to build folder (inner-build if it exists). Both qtScriptedModules and qtLoadableModules should be added.
+### For PythonModules, add the folder CONTAINING the .py file (SlicerDevelopmentToolbox, CurveMaker, NeedleShapeReceiver)
+### Restart
+
+## Directions to Test Needle Communication
+### &nbsp;&nbsp;&nbsp;&nbsp; cd /home/user_name/HyperionInerrogator
+### &nbsp;&nbsp;&nbsp;&nbsp; python3 plotFBGSpectra 10.0.0.55 #You should see a plot coming up with three peaks and four overlapping spikes -- 3CH, 4AA
+### ### &nbsp;&nbsp;&nbsp;&nbsp; Details on needle paramters are in the ShapeCall module from the custom NeedleShapeReceiver folder
+## Directions to Run Shell Script for Custom Module ShapeCall
+## bash /home/user_name/Slicer-SuperBuild-Debug/SlicerModules/slicer-ros2/run_needle_master.sh
+## Turn on Hyperion Interrogator -- blue light should flash. Make sure ens1f1 is connected to Hyperion, with ip 10.0.0.56 (talks to Hyperion -- 10.0.0.55) -- Same network, different ports
+## In Slicer, find and click on ShapeCall in NeedleShapeVisualization from drop-down menu
 
 Run the Slicer Executable (./Slicer) from your Slicer-build subdirectory. Follow steps in link to verify &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; execution rights if clicking on app icon (looks like settings icon) does not launch Slicer.
 ### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; """
