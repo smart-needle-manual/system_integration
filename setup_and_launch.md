@@ -228,7 +228,7 @@ You should see a plot coming up with three peaks and four overlapping spikes cor
 Details on needle paramters are in the ShapeCall module from the custom NeedleShapeReceiver folder
 ## Running Shell Script for Custom Module ShapeCall
 ```
-bash /home/<user_name>/Slicer-SuperBuild-Debug/SlicerModules/slicer-ros2/run_needle_master.sh
+bash /home/<user_name>/sm_manual/system_integration/run_needle_master.sh
 ```
 1. Turn on Hyperion Interrogator. A blue light should flash. 
 2. Make sure ens1f1 is connected to Hyperion, with ip 10.0.0.56.
