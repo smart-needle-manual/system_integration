@@ -140,7 +140,7 @@ make package
 ## Project Setup 
 First, source ROS, make the project directory, and clone the Slicer-ROS2 communication module, Hyperion interrogator communication module, needle shape publisher, and shell script into the directory.
 ```
-source/opt/ros/humble/setup.bash
+source /opt/ros/humble/setup.bash
 mkdir -p ~/sm_manual/src
 cd ~/sm_manual/src
 git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git
