@@ -152,7 +152,7 @@ Next, navigate to the core SlicerModules folder and clone the core Slicer module
 The names which will be used for <module_name>-build below are next to each cloning command below.
 ```
 mkdir -p ~/Slicer-SuperBuild-Debug/SlicerModules
-cd Slicer-SuperBuild-Debug/SlicerModules
+cd ~/Slicer-SuperBuild-Debug/SlicerModules
 git clone https://github.com/IGSIO/SlicerIGSIO.git                                               #SlicerIGSIO
 git clone https://github.com/SlicerIGT/SlicerIGT.git                                             #SlicerIGT
 git clone https://github.com/openigtlink/SlicerOpenIGTLink.git                                   #SlicerOpenIGTLink
