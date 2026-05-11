@@ -151,6 +151,7 @@ git clone -b updated_dir_and_files_NEEDED https://github.com/smart-needle-manual
 Next, navigate to the core SlicerModules folder and clone the core Slicer modules and the custom ShapeCall module into this folder.<br>
 The names which will be used for <module_name>-build below are next to each cloning command below.
 ```
+mkdir -p Slicer-SuperBuild-Debug/SlicerModules
 cd Slicer-SuperBuild-Debug/SlicerModules
 git clone https://github.com/IGSIO/SlicerIGSIO.git                                               #SlicerIGSIO
 git clone https://github.com/SlicerIGT/SlicerIGT.git                                             #SlicerIGT
