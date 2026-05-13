@@ -188,9 +188,19 @@ cmake -G Ninja   -DSlicer_DIR=/home/<user_name>/Slicer-SuperBuild-Debug/Slicer-b
 ninja -j<N> # Again, 'make' if not using ninja.
 ```
 
-<p><ins>Repeat</ins> this process for the remaining directories. The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration: cmake -G Ninja   -DSlicer_DIR=/home/obgynbrachy/Slicer-SuperBuild-Debug/Slicer-build   -DSlicerIGSIO_DIR=/home/obgynbrachy/Slicer-SuperBuild-Debug/SlicerModules/SlicerIGSIO-build/inner-build   -DCMAKE_BUILD_TYPE=Debug   ../SlicerIGT </p><br>
+<p><ins>Repeat</ins> this process for the remaining directories. The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration: </p><br>
 
+```
+cmake -G Ninja   -DSlicer_DIR=/home/<user_name>/Slicer-SuperBuild-Debug/Slicer-build   -DSlicerIGSIO_DIR=/home/<user_name>/Slicer-SuperBuild-Debug/SlicerModules/SlicerIGSIO-build/inner-build   -DCMAKE_BUILD_TYPE=Debug   ../SlicerIGT
+```
 
+<p>Make sure to exit the current folder and make the next one before repeating for the next module. </p>
+
+```
+cd ..
+mkdir <next_module_name>-build
+cd <next_module_name>-build
+```
 #### Build project & Run Slicer
 You will now navigate to the source of your ros2 workspace, build, and then we will add the needed modules in Application Settings
 
