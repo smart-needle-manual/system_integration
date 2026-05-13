@@ -103,7 +103,7 @@ cd Slicer
 ./Utilities/SetupForDevelopment.sh    #An executable shell script. We will use something similar later for our custome module.
 cd ..
 ```
-4. Install the default (Debug) configuration of Slicer. We will not use the other (Release) version.
+4. Install the default (Debug) configuration of Slicer. We will not use the other (Release) version. Ninja is used here for speed with real or virtual OS.
 ```
 mkdir Slicer-SuperBuild-Debug
 cd Slicer-SuperBuild-Debug
