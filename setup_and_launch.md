@@ -95,18 +95,19 @@ sudo apt update && sudo apt install git build-essential \
 ```
 2. Clone Slicer source code repository. This will create the *Slicer* source directory.
 ```
+cd ~
 git clone https://github.com/Slicer/Slicer.git
 ```
 3. Prepare development environment.
 ```
-cd Slicer
+cd ~/Slicer
 ./Utilities/SetupForDevelopment.sh    #An executable shell script. We will use something similar later for our custome module.
 cd ..
 ```
 4. Install the default (Debug) configuration of Slicer. We will not use the other (Release) version. Ninja is used here for speed with real or virtual OS.
 ```
-mkdir Slicer-SuperBuild-Debug
-cd Slicer-SuperBuild-Debug
+mkdir ~/Slicer-SuperBuild-Debug
+cd ~/Slicer-SuperBuild-Debug
 cmake -G Ninja \
   -DSlicer_USE_SYSTEM_OpenSSL=ON \
   -DCMAKE_BUILD_TYPE:STRING=Debug \
@@ -125,7 +126,7 @@ ninja -j<N>    #N = # CPU cores. (nproc) is max, but likely will run out of RAM.
 ```
 6. Run
 ```
-cd Slicer-build
+cd ~/Slicer-SuperBuild-Debug/Slicer-build
 ./Slicer
 ```
 7. Test
@@ -166,7 +167,7 @@ The remainder are .py modules and require no compilation.
 ```
 git clone https://github.com/QIICR/SlicerDevelopmentToolbox.git
 git clone https://github.com/maribernardes/CurveMaker-3DSlicer.git
-git clone -b update-reupload-20251110_111550 https://github.com/smart-needle-manual/slicer_ros2.git
+git clone -b aligned_feature https://github.com/smart-needle-manual/slicer_ros2.git
 ```
 
 All Slicer Modules built using CMake require compilation. They can be identified by their associated CMakeLists.txt file.
@@ -177,9 +178,9 @@ Make and navigate to the the <module_name>-build directory.
 mkdir SlicerIGSIO-build
 cd SlicerIGSIO-build
 ```
-Use ccmake.
+Use cmake. (ccmake may be used as an alternative, but experience suggests cmake with explicit needed paths is clearer and easier).
 ```
-ccmake ../SlicerIGSIO-build
+cmake -G Ninja   -DSlicer_DIR=/home/<user_name>/Slicer-SuperBuild-Debug/Slicer-build   -DCMAKE_BUILD_TYPE=Debug   ../SlicerIGSIO # Alternative: ccmake ../SlicerIGSIO-build. In the interface, C for configure, find Slicer_DIR, ensure absolute path (..../Slicer-build) is included, enter to confirm, C to reconfigure, again for generation. G for generate.
 ```
 **Next, in the ccmake text-based interface:**
 1. Press C for Configure. The most common missing dependence will be Slicer-build.
@@ -189,10 +190,10 @@ ccmake ../SlicerIGSIO-build
 <p>Make the module in the same directory. <ins>Do not forget this step!</ins></p>
 
 ```
-make
+ninja -j<N> # Again, 'make' if not using ninja.
 ```
 
-<p><ins>Repeat</ins> this process for the remaining directories. The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration.</p><br>
+<p><ins>Repeat</ins> this process for the remaining directories. The first, SlicerIGT, will require the path to SlicerIGSIO <ins>inner-build</ins> prior to successful configuration: cmake -G Ninja   -DSlicer_DIR=/home/obgynbrachy/Slicer-SuperBuild-Debug/Slicer-build   -DSlicerIGSIO_DIR=/home/obgynbrachy/Slicer-SuperBuild-Debug/SlicerModules/SlicerIGSIO-build/inner-build   -DCMAKE_BUILD_TYPE=Debug   ../SlicerIGT </p><br>
 
 
 #### Build project & Run Slicer
