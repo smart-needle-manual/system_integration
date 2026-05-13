@@ -86,12 +86,12 @@ sudo apt install ros-dev-tools    # Dev tools
 Instructions adapted from [Developer Guide - GNU/Linux Systems](https://slicer.readthedocs.io/en/latest/developer_guide/build_instructions/linux.html) <br>
 
 1. The following command installs git, GCC, CMake, Qt, and libXt.<br>
->These tools and libraries allow fetching of Slicer source code as well as generation and building of the project.
+>These tools and libraries allow fetching of Slicer source code as well as generation and building of the project. I've added ninja install; using ninja greatly accelerates download time--important for dev and research settings.
 ```
 sudo apt update && sudo apt install git build-essential \
   cmake cmake-curses-gui cmake-qt-gui \
   libqt5x11extras5-dev qtmultimedia5-dev libqt5svg5-dev qtwebengine5-dev libqt5xmlpatterns5-dev qttools5-dev qtbase5-private-dev \
-  qtbase5-dev qt5-qmake
+  qtbase5-dev qt5-qmake ninja-build
 ```
 2. Clone Slicer source code repository. This will create the *Slicer* source directory.
 ```
