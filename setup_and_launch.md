@@ -134,7 +134,7 @@ ctest -j<N>
 ```
 8. Package (new terminal, same inner-build folder: ~/Slicer-SuperBuild-Debug/Slicer-build)
 ```
-make package
+ninja package # 'make package' if not using ninja
 ```
 
 
