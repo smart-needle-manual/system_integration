@@ -130,7 +130,7 @@ cd Slicer-build
 ```
 7. Test
 ```
-ctest -j<N>
+ctest -j<N> # Due to speed at which tests run, some may fail. Can usually be ignored.
 ```
 8. Package (new terminal, same inner-build folder: ~/Slicer-SuperBuild-Debug/Slicer-build)
 ```
