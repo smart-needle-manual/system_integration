@@ -146,9 +146,9 @@ source /opt/ros/humble/setup.bash
 mkdir -p ~/sm_manual/src
 cd ~/sm_manual/src
 git clone -b update-reupload-20251107_174907 https://github.com/smart-needle-manual/slicer_ros2_module.git
-git clone https://github.com/smart-needle-manual/ros2_hyperion_interrogator.git
-git clone -b update-reupload-20251107_173427 https://github.com/smart-needle-manual/ros2_needle_shape_publisher.git
-git clone -b updated_dir_and_files_NEEDED https://github.com/smart-needle-manual/system_integration.git
+git clone -b linear_optim https://github.com/smart-needle-manual/ros2_hyperion_interrogator.git
+git clone -b linear_optim https://github.com/smart-needle-manual/ros2_needle_shape_publisher.git
+git clone -b align https://github.com/smart-needle-manual/system_integration.git
 ```
 Next, navigate to the core SlicerModules folder and clone the core Slicer modules and the custom ShapeCall module into this folder.<br>
 The names which will be used for <module_name>-build below are next to each cloning command below.
