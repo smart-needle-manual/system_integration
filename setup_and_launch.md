@@ -121,7 +121,7 @@ cmake -G Ninja \
 >Do not forget to 'make'! We do so below.
 5. Build Slicer
 ```
-make -j<N>    #N = # of processore cores for faster parallel building using CPU threads.
+ninja -j<N>    #N = # of processore cores for faster parallel building using CPU threads. (nproc) is max, but likely will run out of RAM. wsl may require reconfiguring memory. Use 'make -j<N> is not using ninja-build. If 32 GB or less, use N=2-4. If 64 GB (actually available, not just max) use 6-10. Be patient. This step may take multiple tries.
 ```
 6. Run
 ```
