@@ -247,5 +247,4 @@ bash /home/<user_name>/sm_manual/src/system_integration/run_needle_master.sh
 3. The computer talks to Hyperion (10.0.0.55). Same network, different ports.
 4. In Slicer, find and click on ShapeCall in NeedleShapeVisualization from drop-down menu.
 
-Run the Slicer Executable (./Slicer) from your Slicer-build subdirectory. Follow steps in link to verify &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; execution rights if clicking on app icon (looks like settings icon) does not launch Slicer.
-### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; """
+Run the Slicer Executable (./Slicer) from your Slicer-build subdirectory. Follow steps in link to verify execution rights if clicking on app icon (looks like settings icon) does not launch Slicer.
