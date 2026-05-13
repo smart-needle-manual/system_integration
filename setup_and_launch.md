@@ -112,8 +112,7 @@ cmake -G Ninja \
   -DCMAKE_BUILD_TYPE:STRING=Debug \
   ../Slicer    # "-DSlicer...Debug" uses system OpenSSL to allow compilation of Slicer-ROS2 modules downstream
 ```
->ALTERNATIVE STEP 4:<br>
->This would look like:
+>ALTERNATIVE STEP 4<br>
 >```
 >cd ~/Slicer-SuperBuild-Debug/Slicer-build
 >ccmake ../Slicer
