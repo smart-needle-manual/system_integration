@@ -206,8 +206,10 @@ You will now navigate to the source of your ros2 workspace, build, and then we w
 
 ```
 source opt/ros/humble/setup.bash
-cd sm_manual
-colcon build --cmake-args -DSlicer_DIR:PATH=/home/<your_user_name>/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Release    # Technically, only colcon build is needed for subsequent builds; I recommend just using the full line each time.
+cd ~/sm_manual
+vcs import src < ~/sm_manual/src/ros2_needle_shape_publisher/ros2_needle_shape_publisher.repos #Temporary
+pip instal -r ~/sm_manual/src/needle_shape_sensing/requirements.txt # One-time install
+colcon build --cmake-args -DSlicer_DIR:PATH=/home/<your_user_name>/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Debug    # Technically, only colcon build is needed for subsequent builds; I recommend just using the full line each time.
 ````
 
 Now your Slicer-ROS2 workspace is set up. Next, run Slicer
@@ -225,6 +227,7 @@ Navigation:
 2. For all **C++** modules, <ins>go to build folder</ins> (inner-build if it exists). *Both qtScriptedModules and qtLoadableModules should be added.*
 3. For all **Python** modules, add the folder <ins>containing</ins> the .py file (SlicerDevelopmentToolbox.py, CurveMaker.py, ShapeCall.py)
 4. Restart
+5. If you accidentally add an incorrect module and Slicer starts behaving weirdly, restart your machine and run Slicer with --disable-modules
 
 ## Testing Needle Communication
 From the terminal:
