@@ -208,7 +208,7 @@ You will now navigate to the source of your ros2 workspace, build, and then we w
 source opt/ros/humble/setup.bash
 cd ~/sm_manual
 vcs import src < ~/sm_manual/src/ros2_needle_shape_publisher/ros2_needle_shape_publisher.repos #Temporary
-pip instal -r ~/sm_manual/src/needle_shape_sensing/requirements.txt # One-time install
+pip install -r ~/sm_manual/src/needle_shape_sensing/requirements.txt # One-time install
 colcon build --cmake-args -DSlicer_DIR:PATH=/home/<your_user_name>/Slicer-SuperBuild-Debug/Slicer-build -DCMAKE_BUILD_TYPE=Debug    # Technically, only colcon build is needed for subsequent builds; I recommend just using the full line each time.
 ````
 
