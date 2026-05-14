@@ -55,7 +55,7 @@ sleep 5
 # -----------------------------
 echo "[MASTER] Launching Slicer..."
 gnome-terminal -- bash -c "
-  cd ~/slicer-ros2/Slicer-SuperBuild-Release/Slicer-build;
+  cd ~/Slicer-SuperBuild-Debug/Slicer-build;
   echo '[TERMINAL 3] Starting Slicer with ShapeCall module...';
   ./Slicer --additional-module-paths ../../NeedleShapeReceiver/ShapeCall;
   exec bash
