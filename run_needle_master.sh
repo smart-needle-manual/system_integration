@@ -22,7 +22,7 @@ gnome-terminal -- bash -c "
   source /opt/ros/humble/setup.bash;
   source ~/sm_manual/install/setup.bash;
   echo '[TERMINAL 1] Starting jhu_needle.launch.py...';
-  ros2 launch needle_shape_publisher jhu_needle.launch.py manual_mode:=True;
+  ros2 launch needle_shape_publisher jhu_needle.launch.py manual_mode:=True shape_type:=64 needle_pose.z:=200.0;
   exec bash
 "
 
@@ -62,4 +62,3 @@ gnome-terminal -- bash -c "
 "
 
 echo "[MASTER] ✅ All processes launched successfully."
-
