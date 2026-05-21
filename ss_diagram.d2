@@ -1,0 +1,17 @@
+onSuture.MRI -> Slicer.import
+
+RTP.onInsert -> onROS.update
+
+onROS.initialization -> onROS.update
+
+onROS.update -> Slicer.import
+
+Slicer.import -> Slicer.tf -> Slicer.align
+
+Slicer.align -> MATLAB.dose
+
+RTP -> Execute
+
+MATLAB.dose -> RTP
+
+onSuture -> onROS
