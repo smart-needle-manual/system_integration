@@ -1,0 +1,34 @@
+Physical -> Insertion -> Imaging -> Tf
+Tf -> Update
+Update -> CT
+CT -> Update
+Update -> Execution
+Insertion -> Execution
+
+Tf: {
+  shape: circle
+}
+
+Imaging: {
+  direction: right
+  CT -> Align -> MRI
+}
+
+Update: {
+  direction: right
+  Tf: {
+    shape: circle
+    Needle -> Dwell -> RTP
+    RTP: {
+      HSV -> D90
+      D90: {
+        shape: circle
+      }
+    }
+  }
+}
+
+Execution: {
+  direction: right
+  Stylet placement -> Needle Retraction
+}
